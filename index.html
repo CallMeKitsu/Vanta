@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>VantaBoard</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body onload="slicetext()">
+
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    </div>
+
+    <!------------------- BUTTONS ------------------->
+    <img src="assets/logo_krispy.png" width="70px">
+    <ion-icon id="render-button" onclick="render()" name="document-text-outline" title="Edit / Render"></ion-icon>
+    <ion-icon id="quicksave-button" onclick="cookiesave()" name="save-outline" title="Quicksave"></ion-icon>
+    <input type="file" id="fileToLoad" hidden="hidden">
+    <ion-icon id="import-button" onclick="importfromfile()" name="cloud-upload-outline" title="Importer"></ion-icon>
+    <ion-icon id="export-button" onclick="exportasstring()" name="cloud-download-outline" title="Exporter"></ion-icon>
+    <ion-icon id="module-button" onclick="addmodule()" name="add-circle-outline" title="Insérer un module"></ion-icon>
+    <ion-icon id="refresh-button" onclick="resetpage()" name="refresh-outline" title="Recharger"></ion-icon>
+    <ion-icon id="theme-button" onclick="themeswitch()" name="partly-sunny-outline" title="Changer de thème"></ion-icon>
+    
+    <!--
+    <ion-icon id="minimize-button" onclick="minimizeWindow()" name="remove-outline"></ion-icon>
+    <ion-icon id="expand-button" onclick="maximizeWindow()" name="expand-outline"></ion-icon>
+    <ion-icon id="close-button" onclick="closeWindow()" name="trash-outline"></ion-icon> ----------------/!>
+
+    <!/------------------ TEXTAREAS ------------------>
+    <textarea class="textclass" id="textclass-0" placeholder="The quick brown fox jumps over the lazy dog." rows="1"></textarea>
+    <div class="container" id="1"></div>
+    <textarea class="textclass" id="textclass-1" rows="1" readOnly="true"></textarea>
+    <div class="container" id="2"></div>
+    <textarea class="textclass" id="textclass-2" rows="1" readOnly="true"></textarea>
+    <div class="container" id="3"></div>
+    <textarea class="textclass" id="textclass-3" rows="1" readOnly="true"></textarea>
+    <div class="container" id="4"></div>
+    <textarea class="textclass" id="textclass-4" rows="1" readOnly="true"></textarea>
+    <div class="container" id="5"></div>
+
+    <!----------------- MAIN SCRIPTS ---------------->
+    <script src="script.js"></script>
+
+    <!------------------ FUNCTIONS ------------------>
+    <script src="functions/anchor.js"></script>
+    <script src="functions/unanchor.js"></script>
+    <script src="functions/datasave.js"></script>
+    <script src="functions/export.js"></script>
+    <script src="functions/import.js"></script>
+    <script src="functions/menu.js"></script>
+    <script src="functions/next.js"></script>
+    <script src="functions/previous.js"></script>
+    <script src="functions/render.js"></script>
+    <script src="functions/slicetext.js"></script>
+    <script src="functions/addmodule.js"></script>
+    <script src="functions/resetpage.js"></script>
+    <script src="functions/themeswitch.js"></script>
+
+    <!-------------- LIBRARIES SCRIPTS -------------->
+    <script type="javascript" src="libs/renderer.js"></script>
+    <script type="javascript" src="libs/FileSaver.js"></script>
+    <script type="javascript" src="./main.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  </body>
+
+</html>
