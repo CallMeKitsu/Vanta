@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>VantaBoard</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  </head>
+  <body>
+  
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    </div>
+  
+    <!------------------- BUTTONS ------------------->
+    <img src="assets/logo_krispy.png" width="70px">
+    <ion-icon id="render-button" onclick="switch_render()" name="document-text-outline" title="Edit / Render"></ion-icon>
+
+  
+    <!------------------ TEXTAREAS ------------------>
+    <div id="content">
+      <textarea id="raw-content" placeholder="Supporte Markdown et Markup !" rows="1"></textarea>
+    </div>
+  
+    <!----------------- MAIN SCRIPTS ---------------->
+    <script src="script.js"></script>
+  
+    <!-------------- LIBRARIES SCRIPTS -------------->
+    <script src="https://callmekitsu.kitsuforyou.repl.co/h/tsu.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  
+  </body>
+
+</html>
