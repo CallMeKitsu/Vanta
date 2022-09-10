@@ -207,6 +207,6 @@ orange {
 .fraction span.bar {display: none;}
 
 ::selection {
-  background-color: yellow;
-  color: black
+  background-color: var(--fontcolor, white);
+  color: var(--bgcolor, black)
 }
