@@ -80,6 +80,7 @@ code {
   border-radius: 5px;
   display: block;
   padding: 15px;
+  white-space: pre
 }
 
 ion-icon {
@@ -138,7 +139,7 @@ red {
 }
 
 green {
-  color: #34fe34
+  color: #438443
 }
 
 yellow {
@@ -151,4 +152,20 @@ blue {
 
 grey {
   color: #8f8f8f
+}
+
+pink {
+  color: #f051eb
+}
+
+lightyellow {
+  color: #fdfdaf
+}
+
+lightgreen {
+  color: #b2ffa8
+}
+
+orange {
+  color: #CE9178
 }

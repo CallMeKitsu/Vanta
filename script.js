@@ -1,9 +1,7 @@
 let FRESH_RAW_DATA = ""
 
 function quicksave() {
-
-  console.log("quicksave")
-    
+  
   let textarea = document.querySelector(`#raw-content`)
   if(!textarea || textarea.nodeName !== "TEXTAREA") return
   
@@ -29,7 +27,7 @@ function compute_html() {
 
     if(line.startsWith('```')) {
       if(!state.code) {
-        state.code = true
+        state.code = line.split('```')[1] || true
         rendered_content += `\<code>`
       }
       else {
@@ -40,7 +38,8 @@ function compute_html() {
     }
 
     else if(state.code) {
-      rendered_content += `${line}<br>`
+      if(state.code === "js") rendered_content += `${highlight_js(line)}<br>`
+      else rendered_content += `${line}<br>`
     }
 
     else if(line.startsWith('---') || line.startsWith('***') || line.startsWith('___')) {
@@ -143,10 +142,46 @@ function markwith(str, sign, balise, end_balise) {
 
   if(arr.length > 0) {
     for (const this_ of arr) {
-      str = str.replace(sign + this_ + sign, balise + this_ + end_balise)
+      str = str.replace(`${sign}${this_}${sign}`, balise + this_ + end_balise)
     }
   }
 
   return str
 
+}
+
+function highlight_js(html) {
+  let res = html
+  //res = res.replaceAll('   ', "&nbsp;")
+  res = placeBaliseAround(res, ['async', 'function', 'var', 'let', "const", "of"], 'blue', "spaced")
+  res = placeBaliseAround(res, ['function'], 'blue', "func")
+  res = placeBaliseAround(res, ['for', 'while', 'if', 'continue', "return", "await", "throw"], 'pink', "spaced")
+  res = placeBaliseAround(res, ['for', 'while', 'if' ], 'pink', "func")
+  let numbers = res.match(/([0-9]+([.][0-9]*)?|[.][0-9]+)/gi) || []
+  res = placeBaliseAround(res, numbers, 'lightgreen', "simple")
+  let functions = res.match(/\w*\(/gi) || []
+  for(var i=0; i<functions.length; i++) {
+    functions[i] = functions[i].slice(0, -1)
+  }
+  functions = functions.filter(x => ["for", "if", 'while', "function"].includes(x) === false )
+  res = placeBaliseAround(res, functions, 'lightyellow', "func")
+  let comments = res.match(/(\/\/.+)/gi) || []
+  res = placeBaliseAround(res, comments, 'green', "simple")
+  let strings = res.match(/([\"'])(?:\\\1|.)*?\1/gi) || []
+  res = placeBaliseAround(res, strings, 'orange', "simple")
+
+  return res
+} 
+
+function placeBaliseAround(text, array, balise, type) {
+
+  for (statement of array) {
+    if(type === "simple") text = text.replaceAll(statement, `<${balise}>${statement}</${balise}>`)
+    else if (type === "spaced") text = text.replaceAll(`${statement} `, `<${balise}>${statement}</${balise}> `)
+    else if (type === "func") {
+      text = text.replaceAll(`${statement}(`, `<${balise}>${statement}</${balise}>(`)
+    }
+  }
+  
+  return text
 }
