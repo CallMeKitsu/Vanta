@@ -20,7 +20,8 @@ function compute_html() {
 
   let state = {
     code: false,
-    quote: false
+    quote: false,
+    maths: false
   }
 
   for (var line of lines) {
@@ -44,6 +45,21 @@ function compute_html() {
     else if (state.code) {
       if (state.code === "js") rendered_content += `${highlight_js(line)}<br>`
       else rendered_content += `${line}<br>`
+    }
+
+    else if (line.startsWith(':::')) {
+      if (!state.maths) {
+        state.maths = line.split(':::')[1] || true
+        rendered_content += `\<maths>`
+      }
+      else {
+        state.maths = false
+        rendered_content += `\</maths>`
+      }
+    }
+
+    else if (state.maths) {
+      rendered_content += `${mathscript(line)}<br>`
     }
 
     else if (line.startsWith('---') || line.startsWith('***') || line.startsWith('___')) {
@@ -229,4 +245,64 @@ function switch_theme() {
     document.querySelector('#vanta-logo').style.filter = "invert(1)"
 
   }
+}
+
+function mathscript(text) {
+  let res = text
+  res = res.replace('=/=', '≠')
+  res = res.replace('~=', '≈')
+  res = res.replace('≥', '>=')
+  res = res.replace('≤', '<=')
+  res = res.replace('+-', '±')
+  res = res.replace('-+', '±')
+  res = res.replace('*', '×⋅')
+  res = res.replace('sqrt(', '√(')
+  res = res.replace('infini', '∞')
+  res = res.replace('pi', 'π')
+  res = res.replace('delta', 'Δ')
+  res = res.replace('sigma', '∑')
+  res = res.replace('omega', 'Ω')
+  res = res.replace('lambda', 'λ')
+  res = res.replace('inter', '∩')
+  res = res.replace('union', '∪')
+  res = res.replace('in', '∈')
+  res = res.replace('empty', 'Ø')
+  res = res.replace('_U', '𝕌')
+  res = res.replace('_N', 'ℕ')
+  res = res.replace('_R', 'ℝ')
+  res = res.replace('_Z', 'ℤ')
+  res = res.replace('_Q', 'ℚ')
+  res = res.replace('_C', 'ℂ')
+
+  for (var char of res) {
+    let alph = "abcdefghijklmnopqrstuvwxyz"
+    let malph = ["𝒶","𝒷","𝒸","𝒹", "ℯ", "<i>f </i>", "ℊ", "𝒽", "𝒾", "𝒿", "𝓀", "𝓁", "𝓂", "𝓃", "ℴ", "𝓅", "𝓆", "𝓇", "𝓈", "𝓉", "𝓊", "𝓋","𝓌","𝓍","𝓎", "𝓏"]
+    if(alph.includes(char)) {
+      let alph_pos = alph.indexOf(char)
+      
+      console.log(char, malph[alph_pos], malph, malph.length)
+      res = res.replaceAll(char, malph.at(alph_pos))
+    }
+  }
+
+  let fractions = res.match(/\(([^)]+)\)/gi) || []
+  fractions = fractions.filter(x => x.includes("_") === true)
+  
+  for (var fraction of fractions) {
+    
+    let up = fraction.replaceAll(" _ ", "_").split('_')[0].replaceAll("( ", "").replaceAll("(", "")
+    let down = fraction.replaceAll(" _ ", "_").split('_')[1].replaceAll(" )", "").replaceAll(")", "")
+    console.log(up, down)
+    res = res.replaceAll(fraction, frac(up, down))
+  }
+
+  res = markwith(res, "~", '<sub>', '</sub>')
+  res = markwith(res, "^", '<sup>', '</sup>')
+  
+  return res
+  
+}
+
+function frac(up, down) {
+  return `<div class="fraction"><span class="fup">${up}</span><span class="bar">/</span><span class="fdn">${down}</span></div>`
 }

@@ -75,6 +75,16 @@ code {
   white-space: pre
 }
 
+maths {
+  font-family: times new roman;
+  color: var(--fontcode, #B9BBBE);
+  background-color: var(--bgcode, #272727);
+  border-radius: 5px;
+  display: block;
+  padding: 15px;
+  white-space: pre
+}
+
 ion-icon {
   font-size: 25px;
 }
@@ -178,3 +188,20 @@ orange {
   padding: 15px;
   width: fit-content;
 }
+
+.fraction {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.fraction > span { 
+  display: block; 
+  padding: 0.1em; 
+}
+
+.fraction span.fdn {
+  border-top: thin solid var(--fontcode, #B9BBBE);
+}
+
+.fraction span.bar {display: none;}
