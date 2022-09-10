@@ -25,7 +25,11 @@ function compute_html() {
 
   for (var line of lines) {
 
-    if(line.startsWith('```')) {
+    if(line.startsWith('<div class="widget"')) {
+      rendered_content += line
+    }
+    
+    else if(line.startsWith('```')) {
       if(!state.code) {
         state.code = line.split('```')[1] || true
         rendered_content += `\<code>`
@@ -152,7 +156,6 @@ function markwith(str, sign, balise, end_balise) {
 
 function highlight_js(html) {
   let res = html
-  //res = res.replaceAll('   ', "&nbsp;")
   res = placeBaliseAround(res, ['async', 'function', 'var', 'let', "const", "of"], 'blue', "spaced")
   res = placeBaliseAround(res, ['function'], 'blue', "func")
   res = placeBaliseAround(res, ['for', 'while', 'if', 'continue', "return", "await", "throw"], 'pink', "spaced")
@@ -184,4 +187,15 @@ function placeBaliseAround(text, array, balise, type) {
   }
   
   return text
+}
+
+function switch_widjet() {
+  let name = prompt("Widjet Command (beta) ?")
+  let textarea = document.querySelector(`#raw-content`)
+  if(!textarea || textarea.nodeName !== "TEXTAREA") return
+
+  if(name === "yt") {
+    let id = prompt("Youtube video Id ?")
+    textarea.value += `<div class="widget"><iframe width="424" height="238" src="https://www.youtube.com/embed/${id}" allow="accelerometer; autoplay;"></iframe></div>`
+  }
 }

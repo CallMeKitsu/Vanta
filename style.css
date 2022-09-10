@@ -6,6 +6,7 @@ body {
   font-family: 'Poppins';
   font-weight: 300;  
   margin-top: 10px;
+  overflow: hidden;
 
   background-color: var(--bgcolor, black);
   color: var(--fontcolor, white);
@@ -24,7 +25,7 @@ body {
   
   position: relative;
   width: 100%;
-  height: fit-content;
+  height: 100%;
   padding: 0px;
 
   color: var(--fontcolor, white);
@@ -34,7 +35,8 @@ body {
   resize: none;
   outline: none;
   border: none;
-  overflow: hidden
+  overflow: auto;
+  overflow-x: hidden;
 }
 
 #rendered-content {
@@ -46,10 +48,6 @@ body {
   background: var(--bgcolor, black);
   color: var(--fontcolor, white);
   transition: color 1s ease background 0.3s;
-}
-
-.menu {
-  position: absolute;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -71,7 +69,6 @@ h1:after {
 hr {
   border-top: 1px solid var(--fontcolor, white);
 }
-
 
 code {
   font-family: monospace;
@@ -121,6 +118,15 @@ ion-icon {
   margin-left: 50px;
 }
 
+#menu {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  z-index: 99;
+  padding: 10px;
+  background: black;
+}
+
 p {
   margin: 0px;
 }
@@ -168,4 +174,12 @@ lightgreen {
 
 orange {
   color: #CE9178
+}
+
+.widget {
+  background-color: #272727;
+  border-radius: 5px;
+  display: block;
+  padding: 15px;
+  width: fit-content;
 }
