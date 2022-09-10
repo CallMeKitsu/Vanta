@@ -17,11 +17,10 @@
     <!------------------- BUTTONS ------------------->
     <img src="assets/logo_krispy.png" width="70px">
     <ion-icon id="render-button" onclick="switch_render()" name="document-text-outline" title="Edit / Render"></ion-icon>
-
   
-    <!------------------ TEXTAREAS ------------------>
+    <!------------------ CONTENT ------------------>
     <div id="content">
-      <textarea id="raw-content" placeholder="Supporte Markdown et Markup !" rows="1"></textarea>
+      <textarea id="raw-content" spellcheck="false" onkeypress="quicksave()" onchange="quicksave()" placeholder="Supporte Markdown et Markup !" rows="1"></textarea>
     </div>
   
     <!----------------- MAIN SCRIPTS ---------------->
