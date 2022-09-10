@@ -14,7 +14,9 @@ body {
 }
 
 #content {
+  padding-top: 10px;
   margin: 10px;
+  margin-right: 0px;
 }
 
 #raw-content {
@@ -35,8 +37,7 @@ body {
   resize: none;
   outline: none;
   border: none;
-  overflow: auto;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 #rendered-content {
@@ -48,6 +49,7 @@ body {
   background: var(--bgcolor, black);
   color: var(--fontcolor, white);
   transition: color 1s ease background 0.3s;
+  height: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -55,15 +57,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  margin-top: 0px;
-  margin-bottom: 25px;
-}
-
-h1:after {
-  content: ' ';
-  display:block;
-  border: 1px solid var(--fontcolor, white);
   margin-top: 25px;
+  margin-bottom: 25px;
 }
 
 hr {
@@ -72,8 +67,8 @@ hr {
 
 code {
   font-family: monospace;
-  color: #B9BBBE;
-  background-color: #272727;
+  color: var(--fontcode, #B9BBBE);
+  background-color: var(--bgcode, #272727);
   border-radius: 5px;
   display: block;
   padding: 15px;
@@ -119,12 +114,12 @@ ion-icon {
 }
 
 #menu {
-  position: absolute;
+  position: fixed;
   right: 0px;
   top: 0px;
   z-index: 99;
   padding: 10px;
-  background: black;
+  background: var(--bgcolor, black);
 }
 
 p {
@@ -177,7 +172,7 @@ orange {
 }
 
 .widget {
-  background-color: #272727;
+  background-color: var(--bgcode, #272727);
   border-radius: 5px;
   display: block;
   padding: 15px;
