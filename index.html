@@ -18,8 +18,26 @@
       <ion-icon id="render-button" onclick="switch_render()" name="document-text-outline" title="Edit / Render"></ion-icon>
       <ion-icon id="widjet-button" onclick="switch_widjet()" name="add-circle-outline" title="Menu des modules"></ion-icon>
       <ion-icon id="theme-button" onclick="switch_theme()" name="partly-sunny-outline" title="Changer de thème"></ion-icon>
-      <ion-icon id="theme-button" onclick="run()" name="play-outline" title="Run cells"></ion-icon>
+      <ion-icon id="files-button" onclick="switch_file()" name="folder-outline" title="Run cells"></ion-icon>
       <img id="vanta-logo" src="assets/logo_krispy.png" width="70px">
+    </div>
+
+    <div id="filemenu" class="hidden">
+      <h1>Gestionnaire de fichiers</h1>
+      <div style="display: flex;">
+        <div style="padding: 10px;">
+          <h3>Exportation</h3>
+          <input type="text" placeholder="Nom_de_fichier"></input><select id="filetype">
+            <option value=".vb.tsu">.vb.tsu</option>
+            <option value=".txt">.txt</option>
+            <option value=".pdf">.pdf</option>
+          </select> <button>exporter</button>
+          <h3>Sauvegarde rapide</h3>
+          <span id="n-characters"></span> / 3000 caractères autorisés <button>sauver</button>
+          <h3>Importation</h3>
+          <input type="file"><button>charger</button>
+        </div>
+      </div>
     </div>
   
     <div id="content">

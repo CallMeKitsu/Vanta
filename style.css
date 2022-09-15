@@ -210,3 +210,22 @@ orange {
   background-color: var(--fontcolor, white);
   color: var(--bgcolor, black)
 }
+
+#filemenu {
+  border: solid 2px #404040;
+  padding: 50px;
+  padding-top: 20px;
+  width: 60%;
+  height: fit-content;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: auto;
+  background: var(--bgcolor, black);
+  z-index: 999;
+}
+
+.hidden {
+  display: none;
+}

@@ -306,3 +306,24 @@ function mathscript(text) {
 function frac(up, down) {
   return `<div class="fraction"><span class="fup">${up}</span><span class="bar">/</span><span class="fdn">${down}</span></div>`
 }
+
+function switch_file() {
+  let nchar = quicksave().length
+  
+  document.querySelector('#n-characters').innerHTML = nchar
+  if(nchar < 3000) {
+    document.querySelector('#n-characters').style.color = "green"
+  } else if(nchar === 3000) {
+    document.querySelector('#n-characters').style.color = "orange"
+  } else if(nchar > 3000) {
+    document.querySelector('#n-characters').style.color = "red"
+  }
+  
+  document.querySelector('#filemenu').classList.toggle('hidden')
+
+  if(document.querySelector('#files-button').name !== "folder-outline") {
+    document.querySelector('#files-button').name = "folder-outline"
+  } else {
+    document.querySelector('#files-button').name = "close-circle-outline"
+  }
+} 
