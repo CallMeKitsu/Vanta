@@ -326,4 +326,11 @@ function switch_file() {
   } else {
     document.querySelector('#files-button').name = "close-circle-outline"
   }
-} 
+}
+
+function save_utf8() {
+  let ext = document.querySelector('#filetype').value
+  let name = document.querySelector('#filename').value
+  let blob = new Blob([quicksave()], { type: "text/plain;charset=utf-8" })
+  _global.saveAs(blob, `${name}${ext}`)
+}
