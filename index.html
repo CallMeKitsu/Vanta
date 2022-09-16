@@ -26,15 +26,23 @@
       <h1>Gestionnaire de fichiers</h1>
       <div style="display: flex;">
         <div style="padding: 10px;">
-          <h3>Exportation</h3>
-          <input id="filename" type="text" placeholder="Nom_de_fichier"></input><select id="filetype">
+          <h3><ion-icon name="download-outline"></ion-icon> Exportation</h3>
+          <input id="filename-export" type="text" placeholder="Nom_de_fichier"></input><select id="filetype-export">
             <option value=".vanta">.vanta</option>
             <option value=".txt">.txt</option>
-            <option value=".pdf">.pdf</option>
+            <option value=".md">.md</option>
           </select> <button onclick="save_utf8()">exporter</button>
-          <h3>Sauvegarde rapide</h3>
+          
+          <h3><ion-icon name="print-outline"></ion-icon> Rendu complexe</h3>
+          <input id="filename-render" type="text" placeholder="Nom_de_fichier"></input><select id="filetype-render">
+            <option value=".pdf">.pdf</option>
+            <option value=".html">.html</option>
+          </select> <button onclick="">exporter</button>
+          
+          <h3><ion-icon name="cloud-download-outline"></ion-icon> Sauvegarde rapide</h3>
           <span id="n-characters"></span> / 3000 caractères autorisés <button>sauver</button>
-          <h3>Importation</h3>
+          
+          <h3><ion-icon name="push-outline"></ion-icon> Importation</h3>
           <input id="fileuploader" type="file"><button onclick="load_utf8()">charger</button>
         </div>
       </div>

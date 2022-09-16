@@ -87,6 +87,7 @@ maths {
 
 ion-icon {
   font-size: 25px;
+  vertical-align: middle;
 }
 
 .sidenav {
@@ -130,6 +131,10 @@ ion-icon {
   z-index: 99;
   padding: 10px;
   background: var(--bgcolor, black);
+}
+
+#menu ion-icon {
+  vertical-align: top;
 }
 
 p {
