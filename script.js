@@ -309,6 +309,7 @@ function frac(up, down) {
 
 function switch_file() {
   quicksave()
+  
   let nchar = FRESH_RAW_DATA.length
 
   document.querySelector('#n-characters').innerHTML = nchar
@@ -361,4 +362,10 @@ function load_utf8() {
   }
 
   fileReader.readAsText(file, "UTF-8")
+}
+
+function closeAllWindows(not) {
+  if(not !== "files" && !document.querySelector('#filemenu').classList.contains('hidden')) {
+    switch_file()
+  }
 }
