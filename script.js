@@ -325,7 +325,7 @@ function switch_file() {
   if (document.querySelector('#files-button').name !== "folder-outline") {
     document.querySelector('#files-button').name = "folder-outline"
   } else {
-    document.querySelector('#files-button').name = "close-circle-outline"
+    document.querySelector('#files-button').name = "folder-open-outline"
   }
 }
 
