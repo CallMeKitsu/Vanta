@@ -224,7 +224,7 @@ function switch_widjet() {
 
 function switch_theme() {
   if (document.getElementById("theme-button").name === "cloudy-night-outline") {
-    
+
     document.getElementById("theme-button").name = "partly-sunny-outline"
 
     document.documentElement.style.setProperty('--bgcolor', "black")
@@ -235,12 +235,12 @@ function switch_theme() {
 
   }
   else {
-    
+
     document.getElementById("theme-button").name = "cloudy-night-outline"
 
     document.documentElement.style.setProperty('--bgcolor', "white")
     document.documentElement.style.setProperty('--fontcolor', "black")
-        document.documentElement.style.setProperty('--fontcode', "#272727")
+    document.documentElement.style.setProperty('--fontcode', "#272727")
     document.documentElement.style.setProperty('--bgcode', "#B9BBBE")
     document.querySelector('#vanta-logo').style.filter = "invert(1)"
 
@@ -276,10 +276,10 @@ function mathscript(text) {
 
   for (var char of res) {
     let alph = "abcdefghijklmnopqrstuvwxyz"
-    let malph = ["𝒶","𝒷","𝒸","𝒹", "ℯ", "<i>f </i>", "ℊ", "𝒽", "𝒾", "𝒿", "𝓀", "𝓁", "𝓂", "𝓃", "ℴ", "𝓅", "𝓆", "𝓇", "𝓈", "𝓉", "𝓊", "𝓋","𝓌","𝓍","𝓎", "𝓏"]
-    if(alph.includes(char)) {
+    let malph = ["𝒶", "𝒷", "𝒸", "𝒹", "ℯ", "<i>f </i>", "ℊ", "𝒽", "𝒾", "𝒿", "𝓀", "𝓁", "𝓂", "𝓃", "ℴ", "𝓅", "𝓆", "𝓇", "𝓈", "𝓉", "𝓊", "𝓋", "𝓌", "𝓍", "𝓎", "𝓏"]
+    if (alph.includes(char)) {
       let alph_pos = alph.indexOf(char)
-      
+
       console.log(char, malph[alph_pos], malph, malph.length)
       res = res.replaceAll(char, malph.at(alph_pos))
     }
@@ -287,9 +287,9 @@ function mathscript(text) {
 
   let fractions = res.match(/\(([^)]+)\)/gi) || []
   fractions = fractions.filter(x => x.includes("_") === true)
-  
+
   for (var fraction of fractions) {
-    
+
     let up = fraction.replaceAll(" _ ", "_").split('_')[0].replaceAll("( ", "").replaceAll("(", "")
     let down = fraction.replaceAll(" _ ", "_").split('_')[1].replaceAll(" )", "").replaceAll(")", "")
     console.log(up, down)
@@ -298,9 +298,9 @@ function mathscript(text) {
 
   res = markwith(res, "~", '<sub>', '</sub>')
   res = markwith(res, "^", '<sup>', '</sup>')
-  
+
   return res
-  
+
 }
 
 function frac(up, down) {
@@ -310,19 +310,19 @@ function frac(up, down) {
 function switch_file() {
   quicksave()
   let nchar = FRESH_RAW_DATA.length
-  
+
   document.querySelector('#n-characters').innerHTML = nchar
-  if(nchar < 3000) {
+  if (nchar < 3000) {
     document.querySelector('#n-characters').style.color = "green"
-  } else if(nchar === 3000) {
+  } else if (nchar === 3000) {
     document.querySelector('#n-characters').style.color = "orange"
-  } else if(nchar > 3000) {
+  } else if (nchar > 3000) {
     document.querySelector('#n-characters').style.color = "red"
   }
-  
+
   document.querySelector('#filemenu').classList.toggle('hidden')
 
-  if(document.querySelector('#files-button').name !== "folder-outline") {
+  if (document.querySelector('#files-button').name !== "folder-outline") {
     document.querySelector('#files-button').name = "folder-outline"
   } else {
     document.querySelector('#files-button').name = "close-circle-outline"
@@ -334,4 +334,31 @@ function save_utf8() {
   let name = document.querySelector('#filename').value
   let blob = new Blob([FRESH_RAW_DATA], { type: "text/plain;charset=utf-8" })
   _global.saveAs(blob, `${name}${ext}`)
+}
+
+function load_utf8() {
+
+  let fileuploader = document.querySelector('#fileuploader')
+
+  var file = fileuploader.files[0]
+  if(!file) return alert('Aucun fichier importé.')
+  let extension = file.name.split('.')[1]
+  let accepted_ext = ['vanta', 'md', 'txt']
+  if (!accepted_ext.includes(extension)) return alert(`l\'extension de fichier n\'est pas reconnue.`)
+
+  var fileReader = new FileReader()
+
+  fileReader.onload = function(fileLoadedEvent) {
+    
+    if (!confirm('Êtes vous sûr.e de vouloir formater le document actuel ?')) return
+    if (document.querySelector('#raw-content')) {
+      document.querySelector('#raw-content').value = fileLoadedEvent.target.result
+    } else {
+      switch_render()
+      document.querySelector('#raw-content').value = fileLoadedEvent.target.result
+    }
+    alert('chargement effectué.')
+  }
+
+  fileReader.readAsText(file, "UTF-8")
 }
