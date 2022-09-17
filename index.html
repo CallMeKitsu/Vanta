@@ -31,7 +31,7 @@
             <option value=".vanta">.vanta</option>
             <option value=".txt">.txt</option>
             <option value=".md">.md</option>
-          </select> <button onclick="save_utf8()">exporter</button>
+          </select> <button onclick="closeAllWindows();save_utf8()">exporter</button>
           
           <h3><ion-icon name="print-outline"></ion-icon> Rendu complexe</h3>
           <input id="filename-render" type="text" placeholder="Nom_de_fichier"></input><select id="filetype-render">
@@ -43,7 +43,7 @@
           <span id="n-characters"></span> / 3000 caractères autorisés <button>sauver</button>
           
           <h3><ion-icon name="push-outline"></ion-icon> Importation</h3>
-          <input id="fileuploader" type="file"><button onclick="load_utf8()">charger</button>
+          <input id="fileuploader" type="file"><button onclick="closeAllWindows();load_utf8()">charger</button>
         </div>
       </div>
     </div>
