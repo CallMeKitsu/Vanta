@@ -226,6 +226,10 @@ function switch_theme() {
 
     document.documentElement.style.setProperty('--bgcolor', "black")
     document.documentElement.style.setProperty('--fontcolor', "white")
+    if(!document.querySelector('#tickhighlight').checked) {
+      document.documentElement.style.setProperty('--selectionbg', "white")
+      document.documentElement.style.setProperty('--selectioncolor', "black")
+    }
     document.documentElement.style.setProperty('--fontcode', "#B9BBBE")
     document.documentElement.style.setProperty('--bgcode', "#272727")
     document.querySelector('#vanta-logo').style.filter = "none"
@@ -237,6 +241,10 @@ function switch_theme() {
 
     document.documentElement.style.setProperty('--bgcolor', "white")
     document.documentElement.style.setProperty('--fontcolor', "black")
+    if(!document.querySelector('#tickhighlight').checked) {
+      document.documentElement.style.setProperty('--selectionbg', "black")
+      document.documentElement.style.setProperty('--selectioncolor', "white")
+    }
     document.documentElement.style.setProperty('--fontcode', "#272727")
     document.documentElement.style.setProperty('--bgcode', "#B9BBBE")
     document.querySelector('#vanta-logo').style.filter = "invert(1)"
@@ -399,3 +407,18 @@ function widg_yt() {
   textarea.value += `<div class="widget"><iframe width="424" height="238" src="https://www.youtube.com/embed/${id}" allow="accelerometer; autoplay;"></iframe></div>`
   
 }
+
+function switch_pres() {
+  document.querySelector('#presmenu').classList.toggle('hidden')
+}
+
+document.querySelector('#tickhighlight').addEventListener('change', function() {
+  if(document.querySelector('#tickhighlight').checked) {
+    document.documentElement.style.setProperty('--selectionbg', "yellow")
+    document.documentElement.style.setProperty('--selectioncolor', "black")
+  }
+  else {
+    document.documentElement.style.setProperty('--selectionbg', document.documentElement.style.getPropertyValue('--bgcolor'))
+    document.documentElement.style.setProperty('--selectioncolor', document.documentElement.style.getPropertyValue('--fontcolor'))
+  }
+})

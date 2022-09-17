@@ -114,7 +114,7 @@ ion-icon {
   transition: top 0.5s;
 }
 
-#dropmenu li, #widgetmenu li {
+#dropmenu li, #widgetmenu li, #presmenu li {
   list-style: none;
 }
 
@@ -197,11 +197,11 @@ orange {
 .fraction span.bar {display: none;}
 
 ::selection {
-  background-color: var(--fontcolor, white);
-  color: var(--bgcolor, black)
+  background-color: var(--selectionbg, white);
+  color: var(--selectioncolor, black)
 }
 
-#filemenu, #widgetmenu, #widgetoptions {
+#filemenu, #widgetmenu, #widgetoptions, #presmenu {
   border: solid 2px #272727;
   padding: 50px;
   width: fit-content;
