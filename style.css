@@ -114,7 +114,7 @@ ion-icon {
   transition: top 0.5s;
 }
 
-#dropmenu li {
+#dropmenu li, #widgetmenu li {
   list-style: none;
 }
 
@@ -201,7 +201,7 @@ orange {
   color: var(--bgcolor, black)
 }
 
-#filemenu {
+#filemenu, #widgetmenu, #widgetoptions {
   border: solid 2px #272727;
   padding: 50px;
   width: fit-content;
@@ -213,6 +213,15 @@ orange {
   margin: auto;
   background: var(--bgcolor, black);
   z-index: 999;
+}
+
+#widgetmenu li {
+  padding: 5px;
+  cursor: pointer;
+}
+
+#widgetmenu li:hover {
+  background-color: var(--bgcode, #272727);
 }
 
 .hidden {

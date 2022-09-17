@@ -211,14 +211,11 @@ function placeBaliseAround(text, array, balise, type) {
   return text
 }
 
-function switch_widjet() {
-  let name = prompt("Widjet Command (beta) ?")
+function switch_widget() {
+  document.querySelector('#widgetmenu').classList.toggle('hidden')
   let textarea = document.querySelector(`#raw-content`)
-  if (!textarea || textarea.nodeName !== "TEXTAREA") return
-
-  if (name === "yt") {
-    let id = prompt("Youtube video Id ?")
-    textarea.value += `<div class="widget"><iframe width="424" height="238" src="https://www.youtube.com/embed/${id}" allow="accelerometer; autoplay;"></iframe></div>`
+  if (!textarea || textarea.nodeName !== "TEXTAREA") {
+    switch_render()
   }
 }
 
@@ -368,4 +365,37 @@ function closeAllWindows(not) {
   if(not !== "files" && !document.querySelector('#filemenu').classList.contains('hidden')) {
     switch_file()
   }
+  if(not !== "widget" && !document.querySelector('#widgetmenu').classList.contains('hidden')) {
+    switch_widget()
+  }
+  if(not !== "wopt" && !document.querySelector('#widgetoptions').classList.contains('hidden')) {
+    document.querySelector('#widgetoptions').classList.toggle('hidden')
+  }
+}
+
+function switch_wopt(params, funcname) {
+  options = ``
+
+  for (let param of params) {
+    options += `
+    <h3>${param.name}</h3>
+    ${param.html}
+    `
+  }
+
+  options += `
+  <button onclick="closeAllWindows('files');${funcname}">charger</button>`
+  
+  document.querySelector('#widgetoptions').innerHTML = options
+  document.querySelector('#widgetoptions').classList.toggle('hidden')
+}
+
+function widg_yt() {
+  let id = document.querySelector('#youtube-video-id').value
+  if(!id) return
+
+  let textarea = document.querySelector('#raw-content')
+  if(!textarea) return
+  textarea.value += `<div class="widget"><iframe width="424" height="238" src="https://www.youtube.com/embed/${id}" allow="accelerometer; autoplay;"></iframe></div>`
+  
 }

@@ -16,7 +16,7 @@
       <img id="vanta-logo" src="assets/logo_krispy.png" width="70px">
     </div>
     <div id="dropmenu" class="closed">
-      <li><ion-icon id="widjet-button" onclick="closeAllWindows('widget');switch_widjet()" name="sparkles-outline" title="Menu des modules"></ion-icon> <grey>Ctrl + N</grey></li>
+      <li><ion-icon id="widget-button" onclick="closeAllWindows('widget');switch_widget()" name="sparkles-outline" title="Menu des modules"></ion-icon> <grey>Ctrl + N</grey></li>
       <li><ion-icon id="theme-button" onclick="switch_theme()" name="partly-sunny-outline" title="Changer de thème"></ion-icon> <grey>Ctrl + T</grey></li>
       <li><ion-icon id="files-button" onclick="closeAllWindows('files');switch_file()" name="folder-outline" title="Run cells"></ion-icon> <grey>Ctrl + S</grey></li>
     </div>
@@ -45,6 +45,15 @@
         </div>
       </div>
     </div>
+
+    <div id="widgetmenu" class="hidden">
+      <li onclick="switch_wopt([
+        {name: 'Youtube Video ID', html: `<input type='text' id='youtube-video-id'/>`}
+        ], 'widg_yt()')"><ion-icon name="logo-youtube"></ion-icon> Youtube Player</li>
+      <!-- <li><ion-icon name="map-outline"></ion-icon> Dynamic Map</li> -->
+    </div>
+
+    <div id="widgetoptions" class="hidden"></div>
   
     <div id="content">
       <textarea id="raw-content" spellcheck="false" onkeypress="quicksave()" onchange="quicksave()" placeholder="Supporte Markdown et Markup !" rows="1"></textarea>
