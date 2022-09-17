@@ -1,3 +1,12 @@
+:root {
+  --fontcolor: white;
+  --bgcolor: black;
+  --bgcode: #272727;
+  --fontcode: #B9BBBE;
+  --selectionbg: white;
+  --selectioncolor: black;
+}
+
 head {
   overflow: hidden
 }

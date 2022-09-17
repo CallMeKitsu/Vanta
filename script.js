@@ -418,7 +418,7 @@ document.querySelector('#tickhighlight').addEventListener('change', function() {
     document.documentElement.style.setProperty('--selectioncolor', "black")
   }
   else {
-    document.documentElement.style.setProperty('--selectionbg', document.documentElement.style.getPropertyValue('--bgcolor'))
-    document.documentElement.style.setProperty('--selectioncolor', document.documentElement.style.getPropertyValue('--fontcolor'))
+    document.documentElement.style.setProperty('--selectionbg', document.documentElement.style.getPropertyValue('--fontcolor'))
+    document.documentElement.style.setProperty('--selectioncolor', document.documentElement.style.getPropertyValue('--bgcolor'))
   }
 })
