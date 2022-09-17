@@ -379,6 +379,9 @@ function closeAllWindows(not) {
   if(not !== "wopt" && !document.querySelector('#widgetoptions').classList.contains('hidden')) {
     document.querySelector('#widgetoptions').classList.toggle('hidden')
   }
+  if(not !== "pres" && !document.querySelector('#presmenu').classList.contains('hidden')) {
+    switch_pres()
+  }
 }
 
 function switch_wopt(params, funcname) {
