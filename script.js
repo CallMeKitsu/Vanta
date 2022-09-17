@@ -422,3 +422,22 @@ document.querySelector('#tickhighlight').addEventListener('change', function() {
     document.documentElement.style.setProperty('--selectioncolor', document.documentElement.style.getPropertyValue('--bgcolor'))
   }
 })
+
+document.addEventListener("keydown", (event) => {
+  let key = event.isComposing || event.keyCode 
+  if (event.ctrlKey && key === 190) {
+    event.preventDefault()
+    return switch_widget()
+    
+  } if (event.ctrlKey && key === 84) {
+    event.preventDefault()
+    return switch_theme()
+    
+  } if (event.ctrlKey && key === 83) {
+    event.preventDefault()
+    return switch_file()
+    
+  } if (event.ctrlKey && key === 72) {
+    return switch_pres()
+  }
+})
