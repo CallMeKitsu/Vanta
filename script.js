@@ -92,43 +92,59 @@ function compute_html() {
 
     else if (line.startsWith(' * ') || line.startsWith(' - ') || line.startsWith(' + ')) {
       let content = line.split(' * ')[1] || line.split(' - ')[1] || line.split(' + ')[1]
-      rendered_content += `<li><span>${content}</span></li>`
+      rendered_content += `<li><span>${line_md(content)}</span></li>`
     }
 
     else if (line.startsWith('   * ') || line.startsWith('   - ') || line.startsWith('   + ')) {
       let content = line.split('   * ')[1] || line.split('   - ')[1] || line.split('   + ')[1]
-      rendered_content += `<li style='margin-left:25px'><span>${content}</span></li>`
+      rendered_content += `<li style='margin-left:25px'><span>${line_md(content)}</span></li>`
     }
 
     else if (line.startsWith('     * ') || line.startsWith('     - ') || line.startsWith('     + ')) {
       let content = line.split('     * ')[1] || line.split('     - ')[1] || line.split('     + ')[1]
-      rendered_content += `<li style='margin-left:50px'><span>${content}</span></li>`
+      rendered_content += `<li style='margin-left:50px'><span>${line_md(content)}</span></li>`
     }
 
     else {
-      line = markwith(line, "^", '<sup>', '</sup>')
-      line = markwith(line, "#=#", '<mark>', '</mark>')
-      line = markwith(line, "__", '<u>', '</u>')
-      line = markwith(line, "**", '<b>', '</b>')
-      line = markwith(line, "*", '<i>', '</i>')
-      line = markwith(line, "_", '<i><grey>', '</grey></i>')
-      line = markwith(line, "~~", '<strike>', '</strike>')
-      line = markwith(line, "~", '<sub>', '</sub>')
-      line = line.replaceAll('(c)', '©')
-      line = line.replaceAll('(C)', '©')
-      line = line.replaceAll('(r)', '®')
-      line = line.replaceAll('(R)', '®')
-      line = line.replaceAll('(tm)', '™')
-      line = line.replaceAll('(TM)', '™')
-      line = line.replaceAll('+-', '±')
-      line = line.replaceAll('sqrt(', '√(')
-      rendered_content += `${line}<br/>`
+
+      rendered_content += `${line_md(line)}<br/>`
+
     }
 
   }
 
   return rendered_content
 
+}
+
+function line_md(line) {
+
+  if (line.match(/\[(.*?)\]\((.*?)\)/g)) {
+    for (const e of line.match(/\[(.*?)\]\((.*?)\)/g)) {
+      let desc = e.match(/\[(.*?)\]/g)[0].replace(']', '').replace('[', '')
+      let link = e.match(/\((.*?)\)/g)[0].replace('(', '').replace(')', '')
+      line = line.replace(e, `<a style='color: white;text-decoration-style: dotted;' href="${link}">${desc}</a>`)
+    }
+  }
+
+  line = markwith(line, "^", '<sup>', '</sup>')
+  line = markwith(line, "#=#", '<mark>', '</mark>')
+  line = markwith(line, "__", '<u>', '</u>')
+  line = markwith(line, "**", '<b>', '</b>')
+  line = markwith(line, "*", '<i>', '</i>')
+  line = markwith(line, "_", '<i><grey>', '</grey></i>')
+  line = markwith(line, "~~", '<strike>', '</strike>')
+  line = markwith(line, "~", '<sub>', '</sub>')
+  line = line.replaceAll('(c)', '©')
+  line = line.replaceAll('(C)', '©')
+  line = line.replaceAll('(r)', '®')
+  line = line.replaceAll('(R)', '®')
+  line = line.replaceAll('(tm)', '™')
+  line = line.replaceAll('(TM)', '™')
+  line = line.replaceAll('+-', '±')
+  line = line.replaceAll('sqrt(', '√(')
+
+  return line
 }
 
 function switch_render() {
@@ -226,7 +242,7 @@ function switch_theme() {
 
     document.documentElement.style.setProperty('--bgcolor', "black")
     document.documentElement.style.setProperty('--fontcolor', "white")
-    if(!document.querySelector('#tickhighlight').checked) {
+    if (!document.querySelector('#tickhighlight').checked) {
       document.documentElement.style.setProperty('--selectionbg', "white")
       document.documentElement.style.setProperty('--selectioncolor', "black")
     }
@@ -241,7 +257,7 @@ function switch_theme() {
 
     document.documentElement.style.setProperty('--bgcolor', "white")
     document.documentElement.style.setProperty('--fontcolor', "black")
-    if(!document.querySelector('#tickhighlight').checked) {
+    if (!document.querySelector('#tickhighlight').checked) {
       document.documentElement.style.setProperty('--selectionbg', "black")
       document.documentElement.style.setProperty('--selectioncolor', "white")
     }
@@ -314,7 +330,7 @@ function frac(up, down) {
 
 function switch_file() {
   quicksave()
-  
+
   let nchar = FRESH_RAW_DATA.length
 
   document.querySelector('#n-characters').innerHTML = nchar
@@ -347,7 +363,7 @@ function load_utf8() {
   let fileuploader = document.querySelector('#fileuploader')
 
   var file = fileuploader.files[0]
-  if(!file) return alert('Aucun fichier importé.')
+  if (!file) return alert('Aucun fichier importé.')
   let extension = file.name.split('.')[1]
   let accepted_ext = ['vanta', 'md', 'txt']
   if (!accepted_ext.includes(extension)) return alert(`l\'extension de fichier n\'est pas reconnue.`)
@@ -355,7 +371,7 @@ function load_utf8() {
   var fileReader = new FileReader()
 
   fileReader.onload = function(fileLoadedEvent) {
-    
+
     if (!confirm('Êtes vous sûr.e de vouloir formater le document actuel ?')) return
     if (document.querySelector('#raw-content')) {
       document.querySelector('#raw-content').value = fileLoadedEvent.target.result
@@ -370,16 +386,16 @@ function load_utf8() {
 }
 
 function closeAllWindows(not) {
-  if(not !== "files" && !document.querySelector('#filemenu').classList.contains('hidden')) {
+  if (not !== "files" && !document.querySelector('#filemenu').classList.contains('hidden')) {
     switch_file()
   }
-  if(not !== "widget" && !document.querySelector('#widgetmenu').classList.contains('hidden')) {
+  if (not !== "widget" && !document.querySelector('#widgetmenu').classList.contains('hidden')) {
     switch_widget()
   }
-  if(not !== "wopt" && !document.querySelector('#widgetoptions').classList.contains('hidden')) {
+  if (not !== "wopt" && !document.querySelector('#widgetoptions').classList.contains('hidden')) {
     document.querySelector('#widgetoptions').classList.toggle('hidden')
   }
-  if(not !== "pres" && !document.querySelector('#presmenu').classList.contains('hidden')) {
+  if (not !== "pres" && !document.querySelector('#presmenu').classList.contains('hidden')) {
     switch_pres()
   }
 }
@@ -396,19 +412,19 @@ function switch_wopt(params, funcname) {
 
   options += `
   <button onclick="closeAllWindows('files');${funcname}">charger</button>`
-  
+
   document.querySelector('#widgetoptions').innerHTML = options
   document.querySelector('#widgetoptions').classList.toggle('hidden')
 }
 
 function widg_yt() {
   let id = document.querySelector('#youtube-video-id').value
-  if(!id) return
+  if (!id) return
 
   let textarea = document.querySelector('#raw-content')
-  if(!textarea) return
+  if (!textarea) return
   textarea.value += `<div class="widget"><iframe width="424" height="238" src="https://www.youtube.com/embed/${id}" allow="accelerometer; autoplay;"></iframe></div>`
-  
+
 }
 
 function switch_pres() {
@@ -416,7 +432,7 @@ function switch_pres() {
 }
 
 document.querySelector('#tickhighlight').addEventListener('change', function() {
-  if(document.querySelector('#tickhighlight').checked) {
+  if (document.querySelector('#tickhighlight').checked) {
     document.documentElement.style.setProperty('--selectionbg', "yellow")
     document.documentElement.style.setProperty('--selectioncolor', "black")
   }
@@ -427,19 +443,19 @@ document.querySelector('#tickhighlight').addEventListener('change', function() {
 })
 
 document.addEventListener("keydown", (event) => {
-  let key = event.isComposing || event.keyCode 
+  let key = event.isComposing || event.keyCode
   if (event.ctrlKey && key === 190) {
     event.preventDefault()
     return switch_widget()
-    
+
   } if (event.ctrlKey && key === 84) {
     event.preventDefault()
     return switch_theme()
-    
+
   } if (event.ctrlKey && key === 83) {
     event.preventDefault()
     return switch_file()
-    
+
   } if (event.ctrlKey && key === 72) {
     return switch_pres()
   }
