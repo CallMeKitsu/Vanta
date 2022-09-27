@@ -1,4 +1,14 @@
 let FRESH_RAW_DATA = ""
+let ABBR_DICOS = ['FR', "bio_FR"]
+
+function get(yourUrl){
+  var Httpreq = new XMLHttpRequest(); // a new request
+  Httpreq.open("GET",yourUrl,false);
+  Httpreq.send(null);
+  return Httpreq.responseText;          
+}
+
+let ABBREVIATIONS = JSON.parse(get("https://vanta.kitsuforyou.repl.co/abbr.json"))
 
 function quicksave() {
 
@@ -124,6 +134,12 @@ function line_md(line) {
       let desc = e.match(/\[(.*?)\]/g)[0].replace(']', '').replace('[', '')
       let link = e.match(/\((.*?)\)/g)[0].replace('(', '').replace(')', '')
       line = line.replace(e, `<a style='color: white;text-decoration-style: dotted;' href="${link}">${desc}</a>`)
+    }
+  }
+
+  for(var abbrDict of ABBR_DICOS) {
+    for(var abbr of Object.keys(ABBREVIATIONS[abbrDict])) {
+      line = line.replaceAll(` ${abbr}`, ` ${ABBREVIATIONS[abbrDict][abbr]}`)
     }
   }
   

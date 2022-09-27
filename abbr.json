@@ -1,0 +1,23 @@
+{
+  "FR": {
+    "tjrs": "toujours",
+    "auj": "aujourd'hui",
+    "bcp": "beaucoup",
+    "càd": "c'est-à-dire",
+    "cad": "c'est-à-dire",
+    "tt": "tout",
+    "qqch": "quelque chose",
+    "pdt": "pendant",
+    "cpdt": "cependant",
+    "pr": "pour",
+    "cf": "se reporter à",
+    "lql": "lequel",
+    "ex": "exemple",
+    "nb": "nombre",
+    "pb": "problème",
+    "qd": "quand"
+  },
+  "bio_FR": {
+    "PS": "photosynthèse"    
+  }
+}
