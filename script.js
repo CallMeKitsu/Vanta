@@ -126,7 +126,8 @@ function line_md(line) {
       line = line.replace(e, `<a style='color: white;text-decoration-style: dotted;' href="${link}">${desc}</a>`)
     }
   }
-
+  
+  line = line.replaceAll('~=', '≈')
   line = markwith(line, "^", '<sup>', '</sup>')
   line = markwith(line, "#=#", '<mark>', '</mark>')
   line = markwith(line, "__", '<u>', '</u>')
