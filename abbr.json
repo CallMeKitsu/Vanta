@@ -1,24 +1,68 @@
 {
   "FR": {
-    "tjrs": "toujours",
-    "auj": "aujourd'hui",
-    "bcp": "beaucoup",
+    "doc.": "document",
+    "cf.": "se reporter à",
+    "ex.": "exemple",
+    "e.g.": "<i>exempli gratia</i>",
+    "e.g": "<i>exempli gratia</i>",
+    "av. J.-C.": "avant notre ère",
+    "av. J-C": "avant notre ère",
+    "apr. J.-C.": "de notre ère",
+    "apr. J-C": "de notre ère",
+    "AD": "de notre ère",
+    "assoc.": "association",
+    "art.": "article",
+    "ann.": "annexe",
+    "ajd.": "aujourd'hui",
+    "auj.": "aujourd'hui",
     "càd": "c'est-à-dire",
     "cad": "c'est-à-dire",
+    "c.-à-d.": "c'est-à-dire",
+    "init.": "initial"
+  },
+  "texto_FR": {
+    "tjrs": "toujours",
+    "bcp": "beaucoup",
     "tt": "tout",
     "qqch": "quelque chose",
     "pdt": "pendant",
     "cpdt": "cependant",
-    "pr": "pour",
-    "cf": "se reporter à",
+    "pr ": "pour ",
     "lql": "lequel",
-    "ex": "exemple",
     "nb": "nombre",
     "pb": "problème",
-    "qd": "quand",
-    "doc": "document"
+    "qd": "quand"
   },
   "bio_FR": {
-    "PS": "photosynthèse"
+    "PS": "photosynthèse",
+    "orga.": "organique",
+    "enz.": "enzyme",
+    "PMA": "Procréation médicalement assistée",
+    "prot.": "protéine",
+    "bact.": "bactérie",
+    "moléc.": "molécule",
+    "org.": "organisme",
+    "MEB": "microscope électronique à balayage",
+    "MET": "microscope électronique à transmission",
+    "cell." "cellule",
+    "pg.": "pathogène",
+    "L_T": "Lymphocytes T",
+    "L_B": "Lymphocytes B",
+    "agq.": "antigénique",
+    "IMC ": "Indice de Masse Corporelle ",
+    "MST": "maladie sexuellement transmissible",
+    "OGM": "organisme génétiquement modifié",
+    "AA": "acide aminé"
+  },
+  "physique_FR": {
+    "ac.": "acide",
+    "therm.": "thermique",
+    "e-": "éléctron",
+    "UA": "unité astronomique"
+  },
+  "informatique_FR": {
+    "algo.": "algorithme",
+    "fct.": "fonction",
+    "BDD": "base de données"
   }
 }
