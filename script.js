@@ -1,5 +1,4 @@
 let FRESH_RAW_DATA = ""
-let ABBR_DICOS = ['FR', "bio_FR"]
 
 function get(yourUrl){
   var Httpreq = new XMLHttpRequest(); // a new request
@@ -137,7 +136,10 @@ function line_md(line) {
     }
   }
 
-  for(var abbrDict of ABBR_DICOS) {
+  for(var abbrDict of Object.keys(ABBREVIATIONS)) {
+
+    if(!document.querySelector(`#abbr_${abbrDict}`) || !document.querySelector(`#abbr_${abbrDict}`).checked) continue
+      
     for(var abbr of Object.keys(ABBREVIATIONS[abbrDict])) {
       line = line.replaceAll(` ${abbr}`, ` ${ABBREVIATIONS[abbrDict][abbr]}`)
     }
@@ -415,6 +417,9 @@ function closeAllWindows(not) {
   if (not !== "pres" && !document.querySelector('#presmenu').classList.contains('hidden')) {
     switch_pres()
   }
+  if (not !== "dico" && !document.querySelector('#dicomenu').classList.contains('hidden')) {
+    switch_dico()
+  }
 }
 
 function switch_wopt(params, funcname) {
@@ -458,6 +463,10 @@ document.querySelector('#tickhighlight').addEventListener('change', function() {
     document.documentElement.style.setProperty('--selectioncolor', document.documentElement.style.getPropertyValue('--bgcolor'))
   }
 })
+
+function switch_dico() {
+  document.querySelector('#dicomenu').classList.toggle('hidden')
+}
 
 document.addEventListener("keydown", (event) => {
   let key = event.isComposing || event.keyCode

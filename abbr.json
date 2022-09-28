@@ -15,9 +15,10 @@
     "ex": "exemple",
     "nb": "nombre",
     "pb": "problème",
-    "qd": "quand"
+    "qd": "quand",
+    "doc": "document"
   },
   "bio_FR": {
-    "PS": "photosynthèse"    
+    "PS": "photosynthèse"
   }
 }
