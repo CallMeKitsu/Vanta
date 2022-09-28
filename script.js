@@ -470,7 +470,16 @@ function switch_dico() {
 
 document.addEventListener("keydown", (event) => {
   let key = event.isComposing || event.keyCode
-  if (event.ctrlKey && key === 190) {
+  if (event.ctrlKey && key === 13) {
+    switch_render()
+    let ta = document.querySelector('#raw-content')
+    if(ta) {
+      ta.setSelectionRange(ta.value.length, ta.value.length);
+      ta.focus()
+    }
+    return
+
+  } if (event.ctrlKey && key === 190) {
     event.preventDefault()
     return switch_widget()
 
@@ -484,5 +493,7 @@ document.addEventListener("keydown", (event) => {
 
   } if (event.ctrlKey && key === 72) {
     return switch_pres()
+  } if (event.ctrlKey && key === 68) {
+    return switch_dico()
   }
 })
