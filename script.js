@@ -493,7 +493,8 @@ document.addEventListener("keydown", (event) => {
 
   } if (event.ctrlKey && key === 72) {
     return switch_pres()
-  } if (event.ctrlKey && key === 68) {
+    
+  } if (event.ctrlKey && event.altKey && key === 68) {
     return switch_dico()
   }
 })
