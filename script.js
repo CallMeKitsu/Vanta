@@ -144,7 +144,8 @@ function line_md(line) {
       line = line.replaceAll(` ${abbr}`, ` ${ABBREVIATIONS[abbrDict][abbr]}`)
     }
   }
-  
+
+  line = line.replaceAll('\\', '')
   line = line.replaceAll('~=', '≈')
   line = markwith(line, "^", '<sup>', '</sup>')
   line = markwith(line, "#=#", '<mark>', '</mark>')
