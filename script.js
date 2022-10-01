@@ -398,7 +398,6 @@ function load_utf8() {
       switch_render()
       document.querySelector('#raw-content').value = fileLoadedEvent.target.result
     }
-    alert('chargement effectué.')
   }
 
   fileReader.readAsText(file, "UTF-8")
