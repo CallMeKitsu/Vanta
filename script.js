@@ -4,7 +4,7 @@ function get(yourUrl){
   var Httpreq = new XMLHttpRequest(); // a new request
   Httpreq.open("GET",yourUrl,false);
   Httpreq.send(null);
-  return Httpreq.responseText;          
+  return Httpreq.responseText;
 }
 
 let ABBREVIATIONS = JSON.parse(get("https://vanta.kitsuforyou.repl.co/abbr.json"))
@@ -53,7 +53,7 @@ function compute_html() {
 
     else if (state.code) {
       if (state.code === "js") rendered_content += `${highlight_js(line)}<br>`
-      else rendered_content += `${line}<br>`
+      else rendered_content += `${line_md(line)}<br>`
     }
 
     else if (line.startsWith(':::')) {
@@ -177,7 +177,7 @@ function switch_render() {
     document.querySelector("#rendered-content").style.overflow = "auto"
   }
   else {
-    document.querySelector(`#content`).innerHTML = `<textarea id="raw-content" spellcheck="false" onkeypress="quicksave()" onchange="quicksave()" placeholder="Supporte Markdown et Markup !" rows="1">${FRESH_RAW_DATA}</textarea>`
+    document.querySelector(`#content`).innerHTML = `<textarea id="raw-content" spellcheck="false" onkeypress="quicksave()" onchange="quicksave()" placeholder="Bienvenue." rows="1">${FRESH_RAW_DATA}</textarea>`
     document.getElementById('render-button').name = "document-text-outline"
     document.querySelector('#raw-content').style.overflow = "auto"
   }
@@ -347,6 +347,11 @@ function mathscript(text) {
 function frac(up, down) {
   return `<div class="fraction"><span class="fup">${up}</span><span class="bar">/</span><span class="fdn">${down}</span></div>`
 }
+
+/*
+function lim(point) {
+  return `<div class="limite"><span class="fup">lim</span><span class="bar">/</span><span class="fdn">${down}</span></div>`
+}*/
 
 function switch_file() {
   quicksave()

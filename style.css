@@ -1,3 +1,49 @@
+@font-face {
+  font-family: "Poppins Bold";
+  src: url("./Poppins-SemiBold.ttf")
+}
+
+@media all and (min-width: 100px) and (max-width: 700px) {
+  
+  #menu {
+    width: 100% !important;
+  }
+  
+  #raw-content, #rendered-content {
+    position: fixed !important;
+    top: 65px;
+    min-height: 80vh !important;
+    line-height: 1em !important;
+    font-size: 1em !important;
+  }
+
+  #menu ion-icon {
+    display: none !important;
+  }
+
+  #menu {
+    text-align: center !important;
+    padding: 15px !important;
+  }
+
+  #menu img {
+    width: 90px !important;
+  }
+
+  #bottom-menu {
+    background: var(--bgcolor);
+    z-index: 99;
+    display: block;
+    position: fixed;
+    bottom: 0;
+    width: calc( 100% - 50px);
+    display: flex;
+    gap: 25px;
+    padding: 25px;
+    justify-content: center;
+  }
+} 
+
 :root {
   --fontcolor: white;
   --bgcolor: black;
@@ -12,14 +58,13 @@ head {
 }
 
 body {
-  font-family: 'Poppins';
-  font-weight: 300;  
-  margin-top: 10px;
+  font-family: "Poppins";
   overflow: hidden;
 
   background-color: var(--bgcolor, black);
   color: var(--fontcolor, white);
   transition: color 1s ease background 0.3s;
+  margin: 0px;
 }
 
 #content {
@@ -29,15 +74,9 @@ body {
 }
 
 #raw-content {
-  font-family: 'Poppins';
-  font-weight: 300;
-  font-size: 25px;
-  line-height: 1em;
-  
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 0px;
 
   color: var(--fontcolor, white);
   background-color: var(--bgcolor, black);
@@ -50,15 +89,18 @@ body {
 }
 
 #rendered-content {
-  font-family: 'Poppins';
-  font-weight: 300;
-  font-size: 25px;
-  line-height: 1em;
-
   background: var(--bgcolor, black);
   color: var(--fontcolor, white);
   transition: color 1s ease background 0.3s;
   height: 100%;
+}
+
+#rendered-content, #raw-content {
+  font-family: "Poppins Bold";
+  overflow: hidden;
+  font-size: 25px;
+  line-height: 1em;
+  padding: 10px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -101,6 +143,7 @@ ion-icon {
 }
 
 #menu {
+  text-align: right;
   position: fixed;
   right: 0px;
   top: 0px;
@@ -260,4 +303,12 @@ input[type=text], select {
 
 *:focus {
   outline: none;
+}
+
+#raw-content::placeholder {
+  color: #bababa;
+}
+
+#menu img, #menu ion-icon {
+  vertical-align: middle;
 }

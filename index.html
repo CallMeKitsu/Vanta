@@ -105,7 +105,21 @@
 
   <div id="content" onclick="closeAllWindows()">
     <textarea id="raw-content" spellcheck="false" onkeypress="quicksave()" onchange="quicksave()"
-      placeholder="Supporte Markdown et Markup !" rows="1"></textarea>
+      placeholder="Bienvenue." rows="1"></textarea>
+  </div>
+
+  <div class="hidden" id="bottom-menu">
+     <ion-icon id="dico-button" onclick="closeAllWindows('dico');switch_dico()" name="book-outline"
+        title="Dictionnaire"></ion-icon>
+    <ion-icon id="files-button" onclick="closeAllWindows('files');switch_file()" name="folder-outline"
+        title="Run cells"></ion-icon>
+    <ion-icon id="render-button" onclick="switch_render()" name="document-text-outline" title="Edit / Render">
+    </ion-icon>
+    <ion-icon id="widget-button" onclick="closeAllWindows('widget');switch_widget()" name="sparkles-outline"
+        title="Menu des modules"></ion-icon>
+    <ion-icon id="theme-button" onclick="switch_theme()" name="partly-sunny-outline" title="Changer de thème">
+      </ion-icon>
+    
   </div>
 
   <script src="script.js"></script>
