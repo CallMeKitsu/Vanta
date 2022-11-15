@@ -10,8 +10,7 @@
   }
   
   #raw-content, #rendered-content {
-    position: fixed !important;
-    top: 65px;
+    top: 65px !important;
     min-height: 80vh !important;
     line-height: 1em !important;
     font-size: 1em !important;
@@ -101,6 +100,8 @@ body {
 }
 
 #rendered-content, #raw-content {
+  position: fixed;
+  top: 15px;
   font-family: "Poppins Bold";
   overflow: hidden;
   font-size: 25px;
