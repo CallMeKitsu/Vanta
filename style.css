@@ -15,6 +15,11 @@
     min-height: 80vh !important;
     line-height: 1em !important;
     font-size: 1em !important;
+    padding-bottom: 200px;
+  }
+
+  body {
+    overflow: visible !important;
   }
 
   #menu ion-icon {
@@ -99,7 +104,7 @@ body {
   font-family: "Poppins Bold";
   overflow: hidden;
   font-size: 25px;
-  line-height: 1em;
+  line-height: 1.2em;
   padding: 10px;
 }
 
@@ -179,12 +184,14 @@ p {
 }
 
 li {
+  position: relative;
+  left: 10px;
   list-style: square;
 }
 
 li span {
   position: relative;
-  left: -15px;
+  left: -10px;
 }
 
 red {
@@ -311,4 +318,8 @@ input[type=text], select {
 
 #menu img, #menu ion-icon {
   vertical-align: middle;
+}
+
+hr {
+  background: var(--fontcolor)
 }
