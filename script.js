@@ -155,6 +155,8 @@ function line_md(line) {
   line = markwith(line, "_", '<i><grey>', '</grey></i>')
   line = markwith(line, "~~", '<strike>', '</strike>')
   line = markwith(line, "~", '<sub>', '</sub>')
+  line = line.replaceAll('::', '➜')
+  line = line.replaceAll('->', '➜')
   line = line.replaceAll('(c)', '©')
   line = line.replaceAll('(C)', '©')
   line = line.replaceAll('(r)', '®')
