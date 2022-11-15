@@ -141,6 +141,17 @@ maths {
   white-space: pre
 }
 
+quote {
+  padding: 15px;
+  border-left: 2px solid var(--fontcode);
+  color: var(--fontcode);
+  display: block;
+  background: var(--bgcode);
+  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
+
 ion-icon {
   font-size: 25px;
   vertical-align: middle;
@@ -322,4 +333,19 @@ input[type=text], select {
 
 hr {
   background: var(--fontcolor)
+}
+
+table {
+  border: 2px solid white;
+  border-collapse: collapse;
+}
+
+td, th {
+  padding: 10px;
+  border: 2px solid white;
+}
+
+table th {
+  background: var(--fontcolor);
+  color: var(--bgcolor);
 }

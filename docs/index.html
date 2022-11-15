@@ -1,0 +1,88 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="displayAbbr()">
+  <div id="content">
+    <h1>MarkDown</h1>
+    <table>
+      <thead>
+        <tr>
+          <td>balise</td>
+          <td>result</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><yellow>**</yellow>Some cool text<yellow>**</yellow></td>
+          <td><b>Some cool text</b></td>
+        </tr>
+        <tr>
+          <td><yellow>*</yellow>Some cool text<yellow>*</yellow></td>
+          <td><i>Some cool text</i></td>
+        </tr>
+        <tr>
+          <td><yellow>__</yellow>Some cool text<yellow>__</yellow></td>
+          <td><u>Some cool text</u></td>
+        </tr>
+        <tr>
+          <td><yellow>_</yellow>Some cool text<yellow>_</yellow></td>
+          <td><i><grey>Some cool text</grey></i></td>
+        </tr>
+        <tr>
+          <td>Hello from the 22<yellow>^</yellow>th<yellow>^</yellow> century !</yellow></td>
+          <td>Hello from the 22<sup>th</sup> century !</td>
+        </tr>
+      </tbody>
+    </table>
+    <h1>VantaText</h1>
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align:center">character</th>
+          <th style="text-align:center">replacement</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align:center">:: <br /> -&gt;</td>
+          <td style="text-align:center">➜</td>
+        </tr>
+        <tr>
+          <td style="text-align:center">(C) <br /> (c)</td>
+          <td style="text-align:center">©</td>
+        </tr>
+        <tr>
+          <td style="text-align:center">(R) <br /> (r)</td>
+          <td style="text-align:center">®</td>
+        </tr>
+        <tr>
+          <td style="text-align:center">(TM) <br /> (tm) <br /> :tm:</td>
+          <td style="text-align:center">™</td>
+        </tr>
+        <tr>
+          <td style="text-align:center">+-</td>
+          <td style="text-align:center">±</td>
+        </tr>
+        <tr>
+          <td style="text-align:center">sqrt(x)</td>
+          <td style="text-align:center">√(x)</td>
+        </tr>
+        <tr>
+          <td style="text-align:center">~=</td>
+          <td style="text-align:center">≈</td>
+        </tr>
+      </tbody>
+    </table>
+    <h1>Abbreviation</h1>
+    <div id="abbrs"></div>
+  </div>
+
+  <script src="https://callmekitsu.kitsuforyou.repl.co/h/tsu.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

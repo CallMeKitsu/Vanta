@@ -1,12 +1,5 @@
 let FRESH_RAW_DATA = ""
 
-function get(yourUrl){
-  var Httpreq = new XMLHttpRequest(); // a new request
-  Httpreq.open("GET",yourUrl,false);
-  Httpreq.send(null);
-  return Httpreq.responseText;
-}
-
 let ABBREVIATIONS = JSON.parse(get("https://vanta.kitsuforyou.repl.co/abbr.json"))
 
 function quicksave() {
@@ -97,6 +90,10 @@ function compute_html() {
 
     else if (line.startsWith('###### ')) {
       rendered_content += `<h6>${line_md(line.split('###### ')[1]).bold()}</h6>`
+    }
+
+    else if (line.startsWith('> ')) {
+      rendered_content += `<quote>${line_md(line.split('> ')[1])}</quote>`
     }
 
     else if (line.startsWith(' * ') || line.startsWith(' - ') || line.startsWith(' + ')) {
