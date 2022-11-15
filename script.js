@@ -76,27 +76,27 @@ function compute_html() {
     }
 
     else if (line.startsWith('# ')) {
-      rendered_content += `<h1>${line.split('# ')[1].bold()}</h1>`
+      rendered_content += `<h1>${line_md(line.split('# ')[1]).bold()}</h1>`
     }
 
     else if (line.startsWith('## ')) {
-      rendered_content += `<h2>${line.split('## ')[1].bold()}</h2>`
+      rendered_content += `<h2>${line_md(line.split('## ')[1]).bold()}</h2>`
     }
 
     else if (line.startsWith('### ')) {
-      rendered_content += `<h3>${line.split('### ')[1].bold()}</h3>`
+      rendered_content += `<h3>${line_md(line.split('### ')[1]).bold()}</h3>`
     }
 
     else if (line.startsWith('#### ')) {
-      rendered_content += `<h4>${line.split('#### ')[1].bold()}</h4>`
+      rendered_content += `<h4>${line_md(line.split('#### ')[1]).bold()}</h4>`
     }
 
     else if (line.startsWith('##### ')) {
-      rendered_content += `<h5>${line.split('##### ')[1].bold()}</h5>`
+      rendered_content += `<h5>${line_md(line.split('##### ')[1]).bold()}</h5>`
     }
 
     else if (line.startsWith('###### ')) {
-      rendered_content += `<h6>${line.split('###### ')[1].bold()}</h6>`
+      rendered_content += `<h6>${line_md(line.split('###### ')[1]).bold()}</h6>`
     }
 
     else if (line.startsWith(' * ') || line.startsWith(' - ') || line.startsWith(' + ')) {
