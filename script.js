@@ -133,11 +133,11 @@ function line_md(line) {
     }
   }
 
-  for(var abbrDict of Object.keys(ABBREVIATIONS)) {
+  for (var abbrDict of Object.keys(ABBREVIATIONS)) {
 
-    if(!document.querySelector(`#abbr_${abbrDict}`) || !document.querySelector(`#abbr_${abbrDict}`).checked) continue
-      
-    for(var abbr of Object.keys(ABBREVIATIONS[abbrDict])) {
+    if (!document.querySelector(`#abbr_${abbrDict}`) || !document.querySelector(`#abbr_${abbrDict}`).checked) continue
+
+    for (var abbr of Object.keys(ABBREVIATIONS[abbrDict])) {
       line = line.replaceAll(` ${abbr}`, ` ${ABBREVIATIONS[abbrDict][abbr]}`)
     }
   }
@@ -295,7 +295,7 @@ function mathscript(text) {
   res = res.replace('≤', '<=')
   res = res.replace('+-', '±')
   res = res.replace('-+', '±')
-  res = res.replace('*', '×⋅')
+  res = res.replace('*', '⋅')
   res = res.replace('sqrt', '√')
   res = res.replace('infini', '∞')
   res = res.replace('pi', 'π')
@@ -325,13 +325,13 @@ function mathscript(text) {
     }
   }
 
-  let fractions = res.match(/\(([^)]+)\)/gi) || []
+  let fractions = res.match(/\{(.*?)\}/gi) || []
   fractions = fractions.filter(x => x.includes("_") === true)
 
   for (var fraction of fractions) {
 
-    let up = fraction.replaceAll(" _ ", "_").split('_')[0].replaceAll("( ", "").replaceAll("(", "")
-    let down = fraction.replaceAll(" _ ", "_").split('_')[1].replaceAll(" )", "").replaceAll(")", "")
+    let up = fraction.replaceAll(" _ ", "_").split('_')[0].replaceAll("{ ", "").replaceAll("{", "")
+    let down = fraction.replaceAll(" _ ", "_").split('_')[1].replaceAll(" }", "").replaceAll("}", "")
     console.log(up, down)
     res = res.replaceAll(fraction, frac(up, down))
   }
@@ -477,7 +477,7 @@ document.addEventListener("keydown", (event) => {
   if (event.ctrlKey && key === 13) {
     switch_render()
     let ta = document.querySelector('#raw-content')
-    if(ta) {
+    if (ta) {
       ta.setSelectionRange(ta.value.length, ta.value.length);
       ta.focus()
     }
@@ -497,7 +497,7 @@ document.addEventListener("keydown", (event) => {
 
   } if (event.ctrlKey && key === 72) {
     return switch_pres()
-    
+
   } if (event.ctrlKey && event.altKey && key === 68) {
     return switch_dico()
   }
