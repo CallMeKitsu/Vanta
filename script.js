@@ -338,6 +338,7 @@ function mathscript(text) {
 
   res = markwith(res, "~", '<sub>', '</sub>')
   res = markwith(res, "^", '<sup>', '</sup>')
+  res = markwith(res, "_", '<moy>', '</moy>')
 
   return res
 

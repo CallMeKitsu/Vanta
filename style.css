@@ -107,6 +107,7 @@ body {
   font-size: 25px;
   line-height: 1.2em;
   padding: 10px;
+  width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -349,4 +350,8 @@ td, th {
 table th {
   background: var(--fontcolor);
   color: var(--bgcolor);
+}
+
+moy {
+  border-top: 1px solid var(--fontcode);
 }
