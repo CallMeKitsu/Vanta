@@ -300,7 +300,6 @@ function mathscript(text) {
   res = res.replace('infini', '∞')
   res = res.replace('pi', 'π')
   res = res.replace('delta', 'Δ')
-  res = res.replace('sigma', '∑')
   res = res.replace('omega', 'Ω')
   res = res.replace('lambda', 'λ')
   res = res.replace('inter', '∩')
@@ -313,28 +312,46 @@ function mathscript(text) {
   res = res.replace('_Z', 'ℤ')
   res = res.replace('_Q', 'ℚ')
   res = res.replace('_C', 'ℂ')
+  res = res.replace('f(x)', '<i>f </i>(𝓍)')
 
-  for (var char of res) {
-    let alph = "abcdefghijklmnopqrstuvwxyz"
+  let alph = "abcdefghijklmnopqrstuvwxyz"
+  for (var char of alph) {
     let malph = ["𝒶", "𝒷", "𝒸", "𝒹", "ℯ", "<i>f </i>", "ℊ", "𝒽", "𝒾", "𝒿", "𝓀", "𝓁", "𝓂", "𝓃", "ℴ", "𝓅", "𝓆", "𝓇", "𝓈", "𝓉", "𝓊", "𝓋", "𝓌", "𝓍", "𝓎", "𝓏"]
-    if (alph.includes(char)) {
-      let alph_pos = alph.indexOf(char)
-
-      console.log(char, malph[alph_pos], malph, malph.length)
-      res = res.replaceAll(char, malph.at(alph_pos))
-    }
+    let alph_pos = alph.indexOf(char)
+    res = res.replaceAll(`$${char}`, malph.at(alph_pos))
   }
 
   let fractions = res.match(/\{(.*?)\}/gi) || []
   fractions = fractions.filter(x => x.includes("_") === true)
 
   for (var fraction of fractions) {
-
     let up = fraction.replaceAll(" _ ", "_").split('_')[0].replaceAll("{ ", "").replaceAll("{", "")
     let down = fraction.replaceAll(" _ ", "_").split('_')[1].replaceAll(" }", "").replaceAll("}", "")
     console.log(up, down)
     res = res.replaceAll(fraction, frac(up, down))
   }
+
+  let sums = res.match(/(?<name>sum)+\((?<args>.*)\)/gmi) || []
+  
+  for (let sum of sums) {
+    let paramstring = sum.match(/\(([^\)]+)\)/gi)[0]
+    let params = paramstring.match(/(?:[^,()]+((?:\((>[^()]+|\(|\))*\)))*)+/gi)
+    let args = []
+    
+    for (let param of params) {
+      if (param[0] == " ") {
+        param = param.replace(' ', '')
+      }
+      args.push(param)
+    }
+    
+    let sub = args[0]
+    let expr = args[1]
+    let sup = args[2]
+    sigma = `<sigma><sup>${sup}</sup><span style="font-size: 2em;">Σ</span> ${expr}<sub>${sub}</sub></sigma>`
+    res = res.replaceAll(sums, sigma)
+  }
+  
 
   res = markwith(res, "~", '<sub>', '</sub>')
   res = markwith(res, "^", '<sup>', '</sup>')

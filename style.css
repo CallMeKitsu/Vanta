@@ -355,3 +355,19 @@ table th {
 moy {
   border-top: 1px solid var(--fontcode);
 }
+
+sigma {
+  position: relative;
+}
+
+sigma sup {
+  position: absolute;
+  top: -40px;
+  left: 5px;
+}
+
+sigma sub {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+}
