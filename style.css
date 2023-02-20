@@ -1,52 +1,30 @@
+/* ================================================================ { RULES } == */
+
 @font-face {
   font-family: "Poppins Bold";
-  src: url("./Poppins-SemiBold.ttf")
+  src: url("assets/Poppins-SemiBold.ttf")
 }
 
 @media all and (min-width: 100px) and (max-width: 700px) {
   
-  #menu {
-    width: 100% !important;
-  }
-  
   #raw-content, #rendered-content {
-    top: 65px !important;
     min-height: 80vh !important;
-    line-height: 1em !important;
-    font-size: 1em !important;
     padding-bottom: 200px;
+    left: 0px;
+    width: calc(100% - 40px);
   }
 
   body {
     overflow: visible !important;
   }
-
-  #menu ion-icon {
-    display: none !important;
+  
+  sigma sup {
+    top: -30px !important;
   }
-
-  #menu {
-    text-align: center !important;
-    padding: 15px !important;
-  }
-
-  #menu img {
-    width: 90px !important;
-  }
-
-  #bottom-menu {
-    background: var(--bgcolor);
-    z-index: 99;
-    display: block;
-    position: fixed;
-    bottom: 0;
-    width: calc( 100% - 50px);
-    display: flex;
-    gap: 25px;
-    padding: 25px;
-    justify-content: center;
-  }
+  
 } 
+
+/* ================================================================ { ROOT } == */
 
 :root {
   --fontcolor: white;
@@ -55,14 +33,25 @@
   --fontcode: #B9BBBE;
   --selectionbg: white;
   --selectioncolor: black;
+  --font-fam: "Montserrat";
+  --titles-font-fam: "Poppins Bold";
+  --font-size: 1.2em;
+  --lh: calc(var(--font-size) + 0.3em);
 }
+
+::selection {
+  background-color: var(--selectionbg, white);
+  color: var(--selectioncolor, black)
+}
+
+/* ================================================================ { TAGS } == */
 
 head {
   overflow: hidden
 }
 
 body {
-  font-family: "Poppins";
+  font-family: var(--font-fam);
   overflow: hidden;
 
   background-color: var(--bgcolor, black);
@@ -70,6 +59,91 @@ body {
   transition: color 1s ease background 0.3s;
   margin: 0px;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 15px 0px 15px 0px;
+  font-family: var(--titles-font-fam);
+}
+
+h1 {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+hr {
+  border-top: 1px solid var(--fontcolor, white);
+}
+
+ion-icon {
+  font-size: 25px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+p {
+  margin: 0px;
+}
+
+li {
+  position: relative;
+  left: 10px;
+  list-style: square;
+}
+
+li span {
+  position: relative;
+  left: -10px;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  color: var(--fontcolor, white);
+  background: var(--bgcode, #272727);
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: opacity(0.8)
+}
+
+input[type=text], select {
+  color: var(--fontcolor, white);
+  background: var(--bgcode, #272727);
+  padding: 5px;
+  border: none;
+  outline: none;
+  appearance: none;
+}
+
+*:focus {
+  outline: none;
+}
+
+hr {
+  background: var(--fontcolor)
+}
+
+table {
+  border: 2px solid white;
+  border-collapse: collapse;
+}
+
+td, th {
+  padding: 10px;
+  border: 2px solid white;
+}
+
+table th {
+  background: var(--fontcolor);
+  color: var(--bgcolor);
+}
+
+/* ================================================================ { CONTENT } == */
 
 #content {
   padding-top: 10px;
@@ -101,27 +175,59 @@ body {
 
 #rendered-content, #raw-content {
   position: fixed;
-  top: 15px;
-  font-family: "Poppins Bold";
+  top: 65px;
+  left: 15%;
+  font-family: var(--font-fam);
   overflow: hidden;
-  font-size: 25px;
-  line-height: 1.2em;
   padding: 10px;
-  width: 100%;
+  margin: auto;
+  width: calc(75% - 40px);
+  line-height: var(--lh);
+  font-size: var(--font-size);
 }
 
-h1, h2, h3, h4, h5, h6 {
-  margin: 15px 0px 15px 0px;
+#raw-content::placeholder {
+  color: var(--fontcode);
 }
 
-h1 {
-  margin-top: 25px;
-  margin-bottom: 25px;
+/* ================================================================ { MENU } == */
+
+#menu {
+  text-align: center;
+  width: 100% !important;
+  padding: 15px;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  z-index: 99;
+  background: var(--bgcolor, black);
 }
 
-hr {
-  border-top: 1px solid var(--fontcolor, white);
+#bottom-menu {
+  background: var(--bgcolor);
+  z-index: 99;
+  position: fixed;
+  bottom: 0;
+  width: calc( 100% - 50px);
+  display: flex;
+  gap: 25px;
+  padding: 25px;
+  justify-content: center;
 }
+
+#menu ion-icon {
+  display: none !important;
+}
+
+#menu img {
+  width: 90px !important;
+}
+
+#menu img, #menu ion-icon {
+  vertical-align: middle;
+}
+
+/* ================================================================ { BLOCKS } == */
 
 code {
   font-family: monospace;
@@ -139,7 +245,7 @@ maths {
   background-color: var(--bgcode, #272727);
   border-radius: 5px;
   display: block;
-  padding: 15px;
+  padding: 30px;
   white-space: pre
 }
 
@@ -154,58 +260,78 @@ quote {
   margin-right: 10px;
 }
 
-ion-icon {
-  font-size: 25px;
+moy {
+  border-top: 1px solid var(--fontcode);
+}
+
+sigma {
+  position: relative;
+  top: 5px;
+}
+
+sigma sup {
+  position: absolute;
+  top: -35px;
+  left: 5px;
+}
+
+sigma sub {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+}
+
+.widget {
+  background-color: var(--bgcode, #272727);
+  border-radius: 5px;
+  display: block;
+  padding: 15px;
+  width: fit-content;
+}
+
+.fraction {
+  display: inline-block;
   vertical-align: middle;
+  text-align: center;
+}
+
+.fraction > span { 
+  display: block; 
+  padding: 0.1em; 
+}
+
+.fraction span.fdn {
+  border-top: thin solid var(--fontcode, #B9BBBE);
+}
+
+.fraction span.bar {display: none;}
+
+/* ================================================================ { WINDOWS } == */
+
+#filemenu, #widgetmenu, #widgetoptions, #presmenu, #dicomenu {
+  border: solid 2px #272727;
+  padding: 50px;
+  width: fit-content;
+  height: fit-content;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: auto;
+  background: var(--bgcolor, black);
+  z-index: 999;
+}
+
+#widgetmenu li {
+  padding: 5px;
   cursor: pointer;
 }
 
-#menu {
-  text-align: right;
-  position: fixed;
-  right: 0px;
-  top: 0px;
-  z-index: 99;
-  padding: 10px;
-  background: var(--bgcolor, black);
+#widgetmenu li:hover {
+  background-color: var(--bgcode, #272727);
 }
 
-#menu ion-icon {
-  vertical-align: top;
-}
-
-#dropmenu {
-  position: fixed;
-  right: 0px;
-  top: 45px;
-  z-index: 80;
-  padding: 10px;
-  background: var(--bgcolor, black);
-  transition: top 0.5s;
-}
-
-#dropmenu li, #widgetmenu li, #presmenu li, #dicomenu li {
-  list-style: none;
-}
-
-#dropmenu.closed {
-  top: -140px;
-}
-
-p {
-  margin: 0px;
-}
-
-li {
-  position: relative;
-  left: 10px;
-  list-style: square;
-}
-
-li span {
-  position: relative;
-  left: -10px;
-}
+/* ================================================================ { COLORS } == */
 
 red {
   color: red
@@ -241,133 +367,4 @@ lightgreen {
 
 orange {
   color: #CE9178
-}
-
-.widget {
-  background-color: var(--bgcode, #272727);
-  border-radius: 5px;
-  display: block;
-  padding: 15px;
-  width: fit-content;
-}
-
-.fraction {
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-}
-
-.fraction > span { 
-  display: block; 
-  padding: 0.1em; 
-}
-
-.fraction span.fdn {
-  border-top: thin solid var(--fontcode, #B9BBBE);
-}
-
-.fraction span.bar {display: none;}
-
-::selection {
-  background-color: var(--selectionbg, white);
-  color: var(--selectioncolor, black)
-}
-
-#filemenu, #widgetmenu, #widgetoptions, #presmenu, #dicomenu {
-  border: solid 2px #272727;
-  padding: 50px;
-  width: fit-content;
-  height: fit-content;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  margin: auto;
-  background: var(--bgcolor, black);
-  z-index: 999;
-}
-
-#widgetmenu li {
-  padding: 5px;
-  cursor: pointer;
-}
-
-#widgetmenu li:hover {
-  background-color: var(--bgcode, #272727);
-}
-
-.hidden {
-  display: none;
-}
-
-button {
-  color: var(--fontcolor, white);
-  background: var(--bgcode, #272727);
-  padding: 5px;
-  border: none;
-  cursor: pointer;
-}
-
-button:hover {
-  filter: opacity(0.8)
-}
-
-input[type=text], select {
-  color: var(--fontcolor, white);
-  background: var(--bgcode, #272727);
-  padding: 5px;
-  border: none;
-  outline: none;
-  appearance: none;
-}
-
-*:focus {
-  outline: none;
-}
-
-#raw-content::placeholder {
-  color: #bababa;
-}
-
-#menu img, #menu ion-icon {
-  vertical-align: middle;
-}
-
-hr {
-  background: var(--fontcolor)
-}
-
-table {
-  border: 2px solid white;
-  border-collapse: collapse;
-}
-
-td, th {
-  padding: 10px;
-  border: 2px solid white;
-}
-
-table th {
-  background: var(--fontcolor);
-  color: var(--bgcolor);
-}
-
-moy {
-  border-top: 1px solid var(--fontcode);
-}
-
-sigma {
-  position: relative;
-}
-
-sigma sup {
-  position: absolute;
-  top: -40px;
-  left: 5px;
-}
-
-sigma sub {
-  position: absolute;
-  bottom: -20px;
-  left: 0;
 }

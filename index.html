@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -18,33 +19,6 @@
     </ion-icon>
     <ion-icon onclick="document.querySelector('#dropmenu').classList.toggle('closed')" name="apps-outline"></ion-icon>
     <img id="vanta-logo" src="assets/logo_krispy.png" width="70px">
-  </div>
-  <div id="dropmenu" class="closed">
-    <li>
-      <ion-icon id="widget-button" onclick="closeAllWindows('widget');switch_widget()" name="sparkles-outline"
-        title="Menu des modules"></ion-icon>
-      <grey>Ctrl + Alt + .</grey>
-    </li>
-    <li>
-      <ion-icon id="theme-button" onclick="switch_theme()" name="partly-sunny-outline" title="Changer de thème">
-      </ion-icon>
-      <grey>Ctrl + Alt + T</grey>
-    </li>
-    <li>
-      <ion-icon id="files-button" onclick="closeAllWindows('files');switch_file()" name="folder-outline"
-        title="Run cells"></ion-icon>
-      <grey>Ctrl + S</grey>
-    </li>
-    <li>
-      <ion-icon id="pres-button" onclick="closeAllWindows('pres');switch_pres()" name="color-palette-outline"
-        title="Presentation menu"></ion-icon>
-      <grey>Ctrl + Alt + H</grey>
-    </li>
-    <li>
-      <ion-icon id="dico-button" onclick="closeAllWindows('dico');switch_dico()" name="book-outline"
-        title="Dictionnaire"></ion-icon>
-      <grey>Ctrl + Alt + D</grey>
-    </li>
   </div>
 
   <div id="filemenu" class="hidden">

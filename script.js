@@ -348,7 +348,7 @@ function mathscript(text) {
     let sub = args[0]
     let expr = args[1]
     let sup = args[2]
-    sigma = `<sigma><sup>${sup}</sup><span style="font-size: 2em;">Σ</span> ${expr}<sub>${sub}</sub></sigma>`
+    sigma = `<sigma><sup>${sup}</sup><span style="font-size: 2em;">Σ</span><sub>${sub}</sub></sigma> ${expr}`
     res = res.replaceAll(sums, sigma)
   }
   
