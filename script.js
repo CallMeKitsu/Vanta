@@ -127,9 +127,15 @@ function line_md(line) {
 
   if (line.match(/\[(.*?)\]\((.*?)\)/g)) {
     for (const e of line.match(/\[(.*?)\]\((.*?)\)/g)) {
-      let desc = e.match(/\[(.*?)\]/g)[0].replace(']', '').replace('[', '')
-      let link = e.match(/\((.*?)\)/g)[0].replace('(', '').replace(')', '')
-      line = line.replace(e, `<a style='color: white;text-decoration-style: dotted;' href="${link}">${desc}</a>`)
+      let desc = e.match(/\[(.*?)\]/g)[0].replaceAll(']', '').replaceAll('[', '')
+      let link = e.match(/\((.*?)\)/g)[0].replaceAll('(', '').replaceAll(')', '')
+      line = line.replaceAll(e, `<a style='color: white;text-decoration-style: dotted;' href="${link}">${desc}</a>`)
+    }
+  }
+
+  if(line.match(/`(.*?)`/gi)) {
+    for (let block of line.match(/`(.*?)`/gi)) {
+      line = line.replaceAll(block, `<block>${mathscript(block.replaceAll('`', ''))}</block>`)
     }
   }
 
@@ -203,7 +209,7 @@ function markwith(str, sign, balise, end_balise) {
 
   if (arr.length > 0) {
     for (const this_ of arr) {
-      str = str.replace(`${sign}${this_}${sign}`, balise + this_ + end_balise)
+      str = str.replaceAll(`${sign}${this_}${sign}`, balise + this_ + end_balise)
     }
   }
 
@@ -289,36 +295,45 @@ function switch_theme() {
 
 function mathscript(text) {
   let res = text
-  res = res.replace('=/=', '≠')
-  res = res.replace('~=', '≈')
-  res = res.replace('≥', '>=')
-  res = res.replace('≤', '<=')
-  res = res.replace('+-', '±')
-  res = res.replace('-+', '±')
-  res = res.replace('*', '⋅')
-  res = res.replace('sqrt', '√')
-  res = res.replace('infini', '∞')
-  res = res.replace('pi', 'π')
-  res = res.replace('delta', 'Δ')
-  res = res.replace('omega', 'Ω')
-  res = res.replace('lambda', 'λ')
-  res = res.replace('inter', '∩')
-  res = res.replace('union', '∪')
-  res = res.replace('in', '∈')
-  res = res.replace('empty', 'Ø')
-  res = res.replace('_U', '𝕌')
-  res = res.replace('_N', 'ℕ')
-  res = res.replace('_R', 'ℝ')
-  res = res.replace('_Z', 'ℤ')
-  res = res.replace('_Q', 'ℚ')
-  res = res.replace('_C', 'ℂ')
-  res = res.replace('f(x)', '<i>f </i>(𝓍)')
+  res = res.replaceAll('=/=', '≠')
+  res = res.replaceAll('~=', '≈')
+  res = res.replaceAll('>=', '≥')
+  res = res.replaceAll('<=', '≤')
+  res = res.replaceAll('+-', '±')
+  res = res.replaceAll('-+', '±')
+  res = res.replaceAll('*', '⋅')
+  res = res.replaceAll('infini', '∞')
+  res = res.replaceAll('pi', 'π')
+  res = res.replaceAll('xi', 'ξ')
+  res = res.replaceAll('delta', 'Δ')
+  res = res.replaceAll('omega', 'Ω')
+  res = res.replaceAll('lambda', 'λ')
+  res = res.replaceAll('inter', '∩')
+  res = res.replaceAll('union', '∪')
+  res = res.replaceAll('in', '∈')
+  res = res.replaceAll('empty', 'Ø')
+  res = res.replaceAll('_U', '𝕌')
+  res = res.replaceAll('_N', 'ℕ')
+  res = res.replaceAll('_R', 'ℝ')
+  res = res.replaceAll('_Z', 'ℤ')
+  res = res.replaceAll('_Q', 'ℚ')
+  res = res.replaceAll('_C', 'ℂ')
+  res = res.replaceAll('f(x)', '<i>f </i>(𝓍)')
 
   let alph = "abcdefghijklmnopqrstuvwxyz"
   for (var char of alph) {
     let malph = ["𝒶", "𝒷", "𝒸", "𝒹", "ℯ", "<i>f </i>", "ℊ", "𝒽", "𝒾", "𝒿", "𝓀", "𝓁", "𝓂", "𝓃", "ℴ", "𝓅", "𝓆", "𝓇", "𝓈", "𝓉", "𝓊", "𝓋", "𝓌", "𝓍", "𝓎", "𝓏"]
+    
     let alph_pos = alph.indexOf(char)
     res = res.replaceAll(`$${char}`, malph.at(alph_pos))
+  }
+
+  let squareRoots = res.match(/(sqrt)+\((?<args>.*)\)/gmi) || []
+  
+  for (let sqrt of squareRoots) {
+    let arg = sqrt.split('(')[1].split(')')[0]
+    let length = arg.length / (arg.length + 1) * 100
+    res = res.replaceAll(sqrt, `<square-root style="--sqrt-length: ${length}%">${arg}</square-root>`)
   }
 
   let fractions = res.match(/\{(.*?)\}/gi) || []
@@ -340,7 +355,7 @@ function mathscript(text) {
     
     for (let param of params) {
       if (param[0] == " ") {
-        param = param.replace(' ', '')
+        param = param.replaceAll(' ', '')
       }
       args.push(param)
     }
@@ -348,7 +363,7 @@ function mathscript(text) {
     let sub = args[0]
     let expr = args[1]
     let sup = args[2]
-    sigma = `<sigma><sup>${sup}</sup><span style="font-size: 2em;">Σ</span><sub>${sub}</sub></sigma> ${expr}`
+    sigma = `<sigma><sup class="sigma">${sup}</sup><span style="font-size: 2em;">Σ</span><sub class="sigma">${sub}</sub></sigma> ${expr}`
     res = res.replaceAll(sums, sigma)
   }
   
@@ -445,6 +460,8 @@ function closeAllWindows(not) {
 }
 
 function switch_wopt(params, funcname) {
+  closeAllWindows()
+  
   options = ``
 
   for (let param of params) {
@@ -469,6 +486,15 @@ function widg_yt() {
   if (!textarea) return
   textarea.value += `<div class="widget"><iframe width="424" height="238" src="https://www.youtube.com/embed/${id}" allow="accelerometer; autoplay;"></iframe></div>`
 
+}
+
+function widg_mathsExpr() {
+  let expr = document.querySelector('#maths-expression').value
+  if (!expr) return
+
+  let textarea = document.querySelector('#raw-content')
+  if (!textarea) return
+  textarea.value += `:::\n${expr}\n:::`
 }
 
 function switch_pres() {
