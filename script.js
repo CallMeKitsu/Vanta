@@ -113,7 +113,7 @@ function compute_html() {
 
     else {
 
-      rendered_content += `${line_md(line)}<br/>`
+      rendered_content += `<line>${line_md(line)}</line><br/>`
 
     }
 
@@ -159,7 +159,10 @@ function line_md(line) {
   line = markwith(line, "~~", '<strike>', '</strike>')
   line = markwith(line, "~", '<sub>', '</sub>')
   line = line.replaceAll('::', '➜')
-  line = line.replaceAll('->', '➜')
+  line = line.replaceAll('L->', '    ↳')
+  line = line.replaceAll('->', '→')
+  line = line.replaceAll('=>', '⇒')
+  line = line.replaceAll('<-', '←')
   line = line.replaceAll('(c)', '©')
   line = line.replaceAll('(C)', '©')
   line = line.replaceAll('(r)', '®')
@@ -388,17 +391,6 @@ function lim(point) {
 function switch_file() {
   quicksave()
 
-  let nchar = FRESH_RAW_DATA.length
-
-  document.querySelector('#n-characters').innerHTML = nchar
-  if (nchar < 3000) {
-    document.querySelector('#n-characters').style.color = "green"
-  } else if (nchar === 3000) {
-    document.querySelector('#n-characters').style.color = "orange"
-  } else if (nchar > 3000) {
-    document.querySelector('#n-characters').style.color = "red"
-  }
-
   document.querySelector('#filemenu').classList.toggle('hidden')
 
   if (document.querySelector('#files-button').name !== "folder-outline") {
@@ -408,11 +400,59 @@ function switch_file() {
   }
 }
 
+function switch_save() {
+  alert(document.querySelector('#filetype-save').value)
+  if(document.querySelector('#filetype-save').value == ".pdf") save_pdf()
+  if(document.querySelector('#filetype-save').value == ".html") save_html()
+  else save_utf8()
+}
+
+function save_pdf() {
+  window.jsPDF = window.jspdf.jsPDF;
+  window.html2canvas = html2canvas;
+
+  let doc = new jsPDF();
+	let content = document.querySelector("#rendered-content")
+  if(!content) switch_render()
+  content = document.querySelector("#rendered-content")
+
+  doc.html(content, {
+    callback: function(doc) {
+      doc.save(`${document.querySelector('#filename-export').value}.pdf`);
+    },
+    margin: [10, 10, 10, 10],
+    autoPaging: 'text',
+    x: 0,
+    y: 0,
+    width: 190, //target width in the PDF document
+    windowWidth: 675 //window width in CSS pixels
+  });
+}
+  
 function save_utf8() {
-  let ext = document.querySelector('#filetype-export').value
+  let ext = document.querySelector('#filetype-save').value
   let name = document.querySelector('#filename-export').value
   let blob = new Blob([FRESH_RAW_DATA], { type: "text/plain;charset=utf-8" })
   _global.saveAs(blob, `${name}${ext}`)
+}
+
+function save_html() {
+  let name = document.querySelector('#filename-export').value
+  
+  let htmlContent = `<html>
+    <head>
+      <title>${name}</title>
+    </head>
+    <body>
+      <style>
+        ${get('https://vanta.kitsuforyou.repl.co/style.css')}
+      </style>
+      ${document.querySelector('#rendered-content').outerHTML}
+    </body>
+  </html>`
+  
+  let blob = new Blob([htmlContent], { type: "text/html;charset=utf-8" })
+  _global.saveAs(blob, `${name}.html`)
 }
 
 function load_utf8() {

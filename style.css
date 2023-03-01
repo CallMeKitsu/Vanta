@@ -40,8 +40,10 @@
 }
 
 ::selection {
-  background-color: var(--selectionbg, white);
-  color: var(--selectioncolor, black)
+  background-color: var(--selectionbg, white); 
+  color: var(--selectioncolor, black); /*
+  text-decoration: underline;
+  text-decoration-color: yellow;*/
 }
 
 ::-webkit-scrollbar {
@@ -163,6 +165,10 @@ table th {
   color: var(--bgcolor);
 }
 
+line {
+  white-space: pre-wrap;
+}
+
 /* ================================================================ { CONTENT } == */
 
 #content {
@@ -182,9 +188,9 @@ table th {
   
   position: fixed;
   top: 65px;
-  left: 15%;
+  left: 17%;
   
-  width: calc(75% - 40px);
+  width: calc(65% - 40px);
   height: calc(100% - 165px);
   padding: 10px;
   margin: auto;
@@ -204,6 +210,7 @@ table th {
 /* ================================================================ { MENU } == */
 
 #vanta-logo {
+  margin-top: 10px;
   cursor: help;
 }
 
@@ -379,6 +386,32 @@ block {
 
 #widgetmenu li:hover {
   background-color: var(--bgcode, #272727);
+}
+
+/* ================================================================ { VBOT } == */
+
+#vBot {
+  position: fixed;
+  top: 75px;
+  right: -270px;
+  background: var(--bgcode);
+  width: 250px;
+  min-height: 500px;
+  border-radius: 15px;
+  border-right-radius: 0px;
+  padding: 20px;
+  cursor: grab;
+  transition: all 1s ease-in-out;
+}
+
+#vBot.active {
+  top: 75px;
+  right: 10px;
+  cursor: auto;
+}
+
+#vBot-word {
+  color: yellow;
 }
 
 /* ================================================================ { COLORS } == */

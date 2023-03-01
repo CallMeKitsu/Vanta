@@ -17,31 +17,19 @@
   <div id="menu">
     <img id="vanta-logo" src="assets/logo_krispy.png" width="70px" onclick="window.open('https://vanta.kitsuforyou.repl.co/docs','_blank');">
   </div>
-
   <div id="filemenu" class="hidden window">
     <div style="display: flex;">
       <div style="padding: 10px;">
         <h3>
           <ion-icon name="download-outline"></ion-icon> Exportation
         </h3>
-        <input id="filename-export" type="text" placeholder="Nom_de_fichier"></input><select id="filetype-export">
+        <input id="filename-export" type="text" placeholder="Nom_de_fichier"></input><select id="filetype-save">
           <option value=".vanta">.vanta</option>
           <option value=".txt">.txt</option>
           <option value=".md">.md</option>
-        </select> <button onclick="closeAllWindows();save_utf8()">exporter</button>
-
-        <h3>
-          <ion-icon name="print-outline"></ion-icon> Rendu complexe
-        </h3>
-        <input id="filename-render" type="text" placeholder="Nom_de_fichier"></input><select id="filetype-render">
           <option value=".pdf">.pdf</option>
           <option value=".html">.html</option>
-        </select> <button onclick="">exporter</button>
-
-        <h3>
-          <ion-icon name="cloud-download-outline"></ion-icon> Sauvegarde rapide
-        </h3>
-        <span id="n-characters"></span> / 3000 caractères autorisés <button>sauver</button>
+        </select> <button onclick="closeAllWindows();switch_save()">exporter</button>
 
         <h3>
           <ion-icon name="push-outline"></ion-icon> Importation
@@ -50,7 +38,6 @@
       </div>
     </div>
   </div>
-
   <div id="widgetmenu" class="hidden window">
     <ul>
       <li onclick="switch_wopt([
@@ -66,11 +53,9 @@
       <!-- <li><ion-icon name="map-outline"></ion-icon> Dynamic Map</li> -->
     </ul>
   </div>
-
   <div id="presmenu" class="hidden window">
     <li><input type="checkbox" id="tickhighlight"> Highlight</li>
   </div>
-
   <div id="dicomenu" class="hidden window">
     <li><input type="checkbox" checked id="abbr_FR"> Français (Global)</li>
     <li><input type="checkbox" id="abbr_texto_FR"> Texto (FR)</li>
@@ -78,12 +63,11 @@
     <li><input type="checkbox" id="abbr_physique_FR"> Physique (FR)</li>
     <li><input type="checkbox" id="abbr_informatique_FR"> Informatique (FR)</li>
   </div>
-
   <div id="widgetoptions" class="hidden window"></div>
 
   <div id="content" onclick="closeAllWindows()">
     <textarea id="raw-content" spellcheck="false" onkeypress="quicksave()" onchange="quicksave()"
-      placeholder="Tony Stark's own NoteBook." rows="1"></textarea>
+      placeholder="Bienvenue." rows="1"></textarea>
   </div>
 
   <div id="bottom-menu">
@@ -100,8 +84,23 @@
     
   </div>
   
-<script src="https://callmekitsu.kitsuforyou.repl.co/h/tsu.js"></script>
+  <div id="vBot">
+    <h2 id="vBot-word">vBot</h2>
+    <div id="vBot-content">
+      <span>utilisé <span id="vBot-used"></span> fois</span>
+      <span>parmi <span id="vBot-words"></span> mots</span> et
+      <span><span id="vBot-chars"></span> caractères</span>.<br>
+      <quote id="vBot-definition"></quote>
+      <br><br>
+      <span id="vBot-translation"></span>
+    </div>
+  </div>
+  
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://callmekitsu.kitsuforyou.repl.co/h/tsu.js"></script>
   <script src="script.js"></script>
+  <script src="libs/vBot.js"></script>
   <script src="libs/Filesaver.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
