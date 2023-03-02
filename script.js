@@ -401,7 +401,6 @@ function switch_file() {
 }
 
 function switch_save() {
-  alert(document.querySelector('#filetype-save').value)
   if(document.querySelector('#filetype-save').value == ".pdf") save_pdf()
   if(document.querySelector('#filetype-save').value == ".html") save_html()
   else save_utf8()

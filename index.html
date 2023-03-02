@@ -12,30 +12,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body onclick="document.style.cursor = 'grabbing'">
 
   <div id="menu">
     <img id="vanta-logo" src="assets/logo_krispy.png" width="70px" onclick="window.open('https://vanta.kitsuforyou.repl.co/docs','_blank');">
   </div>
   <div id="filemenu" class="hidden window">
-    <div style="display: flex;">
-      <div style="padding: 10px;">
-        <h3>
-          <ion-icon name="download-outline"></ion-icon> Exportation
-        </h3>
-        <input id="filename-export" type="text" placeholder="Nom_de_fichier"></input><select id="filetype-save">
-          <option value=".vanta">.vanta</option>
-          <option value=".txt">.txt</option>
-          <option value=".md">.md</option>
-          <option value=".pdf">.pdf</option>
-          <option value=".html">.html</option>
-        </select> <button onclick="closeAllWindows();switch_save()">exporter</button>
-
-        <h3>
-          <ion-icon name="push-outline"></ion-icon> Importation
-        </h3>
-        <input id="fileuploader" type="file"><button onclick="closeAllWindows();load_utf8()">charger</button>
-      </div>
+    <input id="filename-export" type="text" placeholder="Nom_de_fichier"></input><select id="filetype-save">
+      <option value=".vanta">.vanta</option>
+      <option value=".txt">.txt</option>
+      <option value=".md">.md</option>
+      <option value=".pdf">.pdf</option>
+      <option value=".html">.html</option>
+    </select> 
+    
+    <button onclick="closeAllWindows();switch_save()">exporter</button>
+    
+    </br></br></br>
+    
+    <input id="fileuploader" type="file">
+     <div id="filed-drop">
+        Ouvrir un fichier VANTA
     </div>
   </div>
   <div id="widgetmenu" class="hidden window">
@@ -57,11 +54,13 @@
     <li><input type="checkbox" id="tickhighlight"> Highlight</li>
   </div>
   <div id="dicomenu" class="hidden window">
-    <li><input type="checkbox" checked id="abbr_FR"> Français (Global)</li>
-    <li><input type="checkbox" id="abbr_texto_FR"> Texto (FR)</li>
-    <li><input type="checkbox" id="abbr_bio_FR"> Biologie (FR)</li>
-    <li><input type="checkbox" id="abbr_physique_FR"> Physique (FR)</li>
-    <li><input type="checkbox" id="abbr_informatique_FR"> Informatique (FR)</li>
+    <ul>
+      <li><input type="checkbox" checked id="abbr_FR"> Français (Global)</li>
+      <li><input type="checkbox" id="abbr_texto_FR"> Texto (FR)</li>
+      <li><input type="checkbox" id="abbr_bio_FR"> Biologie (FR)</li>
+      <li><input type="checkbox" id="abbr_physique_FR"> Physique (FR)</li>
+      <li><input type="checkbox" id="abbr_informatique_FR"> Informatique (FR)</li>
+    </ul>
   </div>
   <div id="widgetoptions" class="hidden window"></div>
 

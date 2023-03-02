@@ -37,6 +37,8 @@
   --titles-font-fam: "Poppins Bold";
   --font-size: 1.2em;
   --lh: calc(var(--font-size) + 0.3em);
+  --cursor: grab;
+  --point: grab;
 }
 
 ::selection {
@@ -78,7 +80,7 @@ body {
   color: var(--fontcolor, white);
   transition: color 1s ease background 0.3s;
   margin: 0px;
-  cursor: crosshair;
+  cursor: var(--cursor);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -99,7 +101,6 @@ hr {
 ion-icon {
   font-size: 25px;
   vertical-align: middle;
-  cursor: pointer;
 }
 
 p {
@@ -118,19 +119,20 @@ li span {
 }
 
 .hidden {
-  display: none;
+  left: -100% !important;
 }
 
 button {
   color: var(--fontcolor, white);
   background: var(--bgcode, #272727);
+  outline: 2px var(--fontcolor, white);
   padding: 5px;
   border: none;
-  cursor: pointer;
+  cursor: var(--point);
 }
 
 button:hover {
-  filter: opacity(0.8)
+  color: yellow;
 }
 
 input[type=text], select {
@@ -199,7 +201,7 @@ line {
   outline: none;
   border: none;
 
-  cursor: crosshair;
+  cursor: var(--cursor);
 }
 
 #raw-content::placeholder {
@@ -238,8 +240,13 @@ line {
   height: 25px;
 }
 
-#menu ion-icon {
-  display: none !important;
+#bottom-menu ion-icon {
+  cursor: var(--point);
+  transition: transform 150ms ease-out;
+}
+
+#bottom-menu ion-icon:hover {
+  transform: rotate(15deg);
 }
 
 #menu img {
@@ -354,7 +361,7 @@ block {
 /* ================================================================ { WINDOWS } == */
 
 .window {
-  border: solid 2px #272727;
+  border-radius: 25px;
   padding: 50px;
   width: fit-content;
   height: fit-content;
@@ -363,34 +370,49 @@ block {
   top: 50%;
   transform: translate(-50%, -50%);
   margin: auto;
-  background: var(--bgcolor, black);
+  background: var(--bgcode, #272727);
   z-index: 999;
+  transition: left 800ms ease-out;
 }
 
 .window ul {
   padding: 0;
+  padding-right: 25px;
 }
 
 .window ul li {
   list-style: none;
+  cursor: var(--point);
+  padding: 10px;
 }
 
 .window ul li ion-icon {
   margin-right: 10px;
 }
 
-#widgetmenu li {
-  padding: 15px;
-  cursor: pointer;
+li:hover {
+  color: yellow;
 }
 
-#widgetmenu li:hover {
-  background-color: var(--bgcode, #272727);
+#fileuploader {
+  display: none;
+}
+
+#filed-drop {
+  width: 100%;
+  height: 150px;
+  outline: 2px dotted var(--fontcolor);
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: cell;
 }
 
 /* ================================================================ { VBOT } == */
 
 #vBot {
+  display: none;
   position: fixed;
   top: 75px;
   right: -270px;
@@ -398,7 +420,6 @@ block {
   width: 250px;
   min-height: 500px;
   border-radius: 15px;
-  border-right-radius: 0px;
   padding: 20px;
   cursor: grab;
   transition: all 1s ease-in-out;
