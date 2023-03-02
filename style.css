@@ -10,8 +10,16 @@
   #raw-content, #rendered-content {
     min-height: 80vh !important;
     padding-bottom: 200px;
-    left: 0px;
-    width: calc(100% - 40px);
+    left: 20px !important;
+    width: calc(100% - 40px) !important;
+  }
+
+  #rendered-content {
+    width: calc(100% - 60px) !important;
+  }
+
+  #bottom-menu ion-icon:hover {
+    transform: rotate(0deg) !important;
   }
 
   body {
@@ -19,10 +27,24 @@
   }
   
   sigma sup {
-    top: -30px !important;
+    top: -23px !important;
+    left: -3px !important;
+  }
+
+  sigma sub {
+    bottom: -12px !important;
+  }
+
+  .window {
+    min-width: 60%;
+  }
+
+  :root {
+    --font-size: 0.8em !important;
+    --lh: 1.4em !important;
   }
   
-} 
+}
 
 /* ================================================================ { ROOT } == */
 
@@ -30,15 +52,15 @@
   --fontcolor: white;
   --bgcolor: black;
   --bgcode: #272727;
-  --fontcode: #B9BBBE;
+  --fontcode: #dbdbdb;
   --selectionbg: white;
   --selectioncolor: black;
   --font-fam: "Montserrat";
   --titles-font-fam: "Poppins Bold";
-  --font-size: 1.2em;
+  --font-size: 1em;
   --lh: calc(var(--font-size) + 0.3em);
   --cursor: grab;
-  --point: grab;
+  --point: grabbing;
 }
 
 ::selection {
@@ -57,7 +79,7 @@
 }
  
 ::-webkit-scrollbar-thumb {
-  background: var(--selectionbg);
+  background: var(--selectioncolor);
   border-radius: 25px;
   cursor: ns-resize !important;
 }
@@ -67,6 +89,10 @@
 }
 
 /* ================================================================ { TAGS } == */
+
+html, html * {
+  cursor: var(--cursor);
+}
 
 head {
   overflow: hidden
@@ -80,7 +106,6 @@ body {
   color: var(--fontcolor, white);
   transition: color 1s ease background 0.3s;
   margin: 0px;
-  cursor: var(--cursor);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -202,6 +227,7 @@ line {
   border: none;
 
   cursor: var(--cursor);
+  word-break: break-word;
 }
 
 #raw-content::placeholder {
@@ -390,7 +416,7 @@ block {
   margin-right: 10px;
 }
 
-li:hover {
+.window ul li:hover {
   color: yellow;
 }
 

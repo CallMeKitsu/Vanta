@@ -133,7 +133,7 @@ function line_md(line) {
     }
   }
 
-  if(line.match(/`(.*?)`/gi)) {
+  if (line.match(/`(.*?)`/gi)) {
     for (let block of line.match(/`(.*?)`/gi)) {
       line = line.replaceAll(block, `<block>${mathscript(block.replaceAll('`', ''))}</block>`)
     }
@@ -185,7 +185,7 @@ function switch_render() {
     document.querySelector("#rendered-content").style.overflow = "auto"
   }
   else {
-    document.querySelector(`#content`).innerHTML = `<textarea id="raw-content" spellcheck="false" onkeypress="quicksave()" onchange="quicksave()" placeholder="Bienvenue." rows="1">${FRESH_RAW_DATA}</textarea>`
+    document.querySelector(`#content`).innerHTML = `<textarea id="raw-content" spellcheck="false" onkeypress="quicksave()" onchange="quicksave()" placeholder=">_" rows="1">${FRESH_RAW_DATA}</textarea>`
     document.getElementById('render-button').name = "document-text-outline"
     document.querySelector('#raw-content').style.overflow = "auto"
   }
@@ -274,7 +274,7 @@ function switch_theme() {
       document.documentElement.style.setProperty('--selectionbg', "white")
       document.documentElement.style.setProperty('--selectioncolor', "black")
     }
-    document.documentElement.style.setProperty('--fontcode', "#B9BBBE")
+    document.documentElement.style.setProperty('--fontcode', "#dbdbdb")
     document.documentElement.style.setProperty('--bgcode', "#272727")
     document.querySelector('#vanta-logo').style.filter = "none"
 
@@ -290,7 +290,7 @@ function switch_theme() {
       document.documentElement.style.setProperty('--selectioncolor', "white")
     }
     document.documentElement.style.setProperty('--fontcode', "#272727")
-    document.documentElement.style.setProperty('--bgcode', "#B9BBBE")
+    document.documentElement.style.setProperty('--bgcode', "#dbdbdb")
     document.querySelector('#vanta-logo').style.filter = "invert(1)"
 
   }
@@ -326,13 +326,13 @@ function mathscript(text) {
   let alph = "abcdefghijklmnopqrstuvwxyz"
   for (var char of alph) {
     let malph = ["𝒶", "𝒷", "𝒸", "𝒹", "ℯ", "<i>f </i>", "ℊ", "𝒽", "𝒾", "𝒿", "𝓀", "𝓁", "𝓂", "𝓃", "ℴ", "𝓅", "𝓆", "𝓇", "𝓈", "𝓉", "𝓊", "𝓋", "𝓌", "𝓍", "𝓎", "𝓏"]
-    
+
     let alph_pos = alph.indexOf(char)
     res = res.replaceAll(`$${char}`, malph.at(alph_pos))
   }
 
   let squareRoots = res.match(/(sqrt)+\((?<args>.*)\)/gmi) || []
-  
+
   for (let sqrt of squareRoots) {
     let arg = sqrt.split('(')[1].split(')')[0]
     let length = arg.length / (arg.length + 1) * 100
@@ -350,26 +350,26 @@ function mathscript(text) {
   }
 
   let sums = res.match(/(?<name>sum)+\((?<args>.*)\)/gmi) || []
-  
+
   for (let sum of sums) {
     let paramstring = sum.match(/\(([^\)]+)\)/gi)[0]
     let params = paramstring.match(/(?:[^,()]+((?:\((>[^()]+|\(|\))*\)))*)+/gi)
     let args = []
-    
+
     for (let param of params) {
       if (param[0] == " ") {
         param = param.replaceAll(' ', '')
       }
       args.push(param)
     }
-    
+
     let sub = args[0]
     let expr = args[1]
     let sup = args[2]
     sigma = `<sigma><sup class="sigma">${sup}</sup><span style="font-size: 2em;">Σ</span><sub class="sigma">${sub}</sub></sigma> ${expr}`
     res = res.replaceAll(sums, sigma)
   }
-  
+
 
   res = markwith(res, "~", '<sub>', '</sub>')
   res = markwith(res, "^", '<sup>', '</sup>')
@@ -401,8 +401,8 @@ function switch_file() {
 }
 
 function switch_save() {
-  if(document.querySelector('#filetype-save').value == ".pdf") save_pdf()
-  if(document.querySelector('#filetype-save').value == ".html") save_html()
+  if (document.querySelector('#filetype-save').value == ".pdf") save_pdf()
+  if (document.querySelector('#filetype-save').value == ".html") save_html()
   else save_utf8()
 }
 
@@ -411,8 +411,8 @@ function save_pdf() {
   window.html2canvas = html2canvas;
 
   let doc = new jsPDF();
-	let content = document.querySelector("#rendered-content")
-  if(!content) switch_render()
+  let content = document.querySelector("#rendered-content")
+  if (!content) switch_render()
   content = document.querySelector("#rendered-content")
 
   doc.html(content, {
@@ -427,7 +427,7 @@ function save_pdf() {
     windowWidth: 675 //window width in CSS pixels
   });
 }
-  
+
 function save_utf8() {
   let ext = document.querySelector('#filetype-save').value
   let name = document.querySelector('#filename-export').value
@@ -437,7 +437,7 @@ function save_utf8() {
 
 function save_html() {
   let name = document.querySelector('#filename-export').value
-  
+
   let htmlContent = `<html>
     <head>
       <title>${name}</title>
@@ -449,7 +449,7 @@ function save_html() {
       ${document.querySelector('#rendered-content').outerHTML}
     </body>
   </html>`
-  
+
   let blob = new Blob([htmlContent], { type: "text/html;charset=utf-8" })
   _global.saveAs(blob, `${name}.html`)
 }
@@ -478,6 +478,8 @@ function load_utf8() {
   }
 
   fileReader.readAsText(file, "UTF-8")
+
+  switch_render()
 }
 
 function closeAllWindows(not) {
@@ -500,7 +502,7 @@ function closeAllWindows(not) {
 
 function switch_wopt(params, funcname) {
   closeAllWindows()
-  
+
   options = ``
 
   for (let param of params) {
@@ -584,4 +586,13 @@ document.addEventListener("keydown", (event) => {
   } if (event.ctrlKey && event.altKey && key === 68) {
     return switch_dico()
   }
+})
+
+document.querySelector('#filed-drop').addEventListener('click', () => {
+  document.querySelector('#fileuploader').click()
+
+  document.querySelector('#fileuploader').addEventListener('change', () => {
+    closeAllWindows()
+    load_utf8()
+  })
 })
