@@ -13,74 +13,75 @@
 </head>
 
 <body>
-
-  <div id="menu">
-    <img id="vanta-logo" src="assets/logo_krispy.png" width="70px" onclick="window.open('https://vanta.kitsuforyou.repl.co/docs','_blank');">
-  </div>
-  <div id="filemenu" class="hidden window">
-    <input id="filename-export" type="text" placeholder="Nom_de_fichier"></input><select id="filetype-save">
-      <option value=".vanta">.vanta</option>
-      <option value=".txt">.txt</option>
-      <option value=".md">.md</option>
-      <option value=".pdf">.pdf</option>
-      <option value=".html">.html</option>
-    </select> 
-    
-    <button onclick="closeAllWindows();switch_save()">exporter</button>
-    
-    </br></br></br>
-    
-    <input id="fileuploader" type="file">
-     <div id="filed-drop">
-        Ouvrir un fichier VANTA
+    <div id="viewport">
+    <div id="menu">
+      <img id="vanta-logo" src="assets/logo_krispy.png" width="70px" onclick="window.open('https://vanta.kitsuforyou.repl.co/docs','_blank');">
     </div>
-  </div>
-  <div id="widgetmenu" class="hidden window">
-    <ul>
-      <li onclick="switch_wopt([
-          {name: 'Youtube Video ID', html: `<input type='text' id='youtube-video-id'/>`}
-          ], 'widg_yt()')">
-        <ion-icon name="logo-youtube"></ion-icon>Youtube Player
-      </li>
-      <li onclick="switch_wopt([
-          {name: 'Expression', html: `<input type='text' id='maths-expression'/>`}
-          ], 'widg_mathsExpr()')">
-        <ion-icon name="calculator"></ion-icon>Maths Expression
-      </li>
-      <!-- <li><ion-icon name="map-outline"></ion-icon> Dynamic Map</li> -->
-    </ul>
-  </div>
-  <div id="presmenu" class="hidden window">
-    <li><input type="checkbox" id="tickhighlight"> Highlight</li>
-  </div>
-  <div id="dicomenu" class="hidden window">
-    <ul>
-      <li><input type="checkbox" checked id="abbr_FR"> Français (Global)</li>
-      <li><input type="checkbox" id="abbr_texto_FR"> Texto (FR)</li>
-      <li><input type="checkbox" id="abbr_bio_FR"> Biologie (FR)</li>
-      <li><input type="checkbox" id="abbr_physique_FR"> Physique (FR)</li>
-      <li><input type="checkbox" id="abbr_informatique_FR"> Informatique (FR)</li>
-    </ul>
-  </div>
-  <div id="widgetoptions" class="hidden window"></div>
-
-  <div id="content" onclick="closeAllWindows()">
-    <textarea id="raw-content" spellcheck="false" onkeypress="quicksave()" onchange="quicksave()"
-      placeholder=">_" rows="1"></textarea>
-  </div>
-
-  <div id="bottom-menu">
-     <ion-icon id="dico-button" onclick="closeAllWindows('dico');switch_dico()" name="book-outline"
-        title="Dictionnaire"></ion-icon>
-    <ion-icon id="files-button" onclick="closeAllWindows('files');switch_file()" name="folder-outline"
-        title="Run cells"></ion-icon>
-    <ion-icon id="render-button" onclick="switch_render()" name="document-text-outline" title="Edit / Render">
-    </ion-icon>
-    <ion-icon id="widget-button" onclick="closeAllWindows('widget');switch_widget()" name="sparkles-outline"
-        title="Menu des modules"></ion-icon>
-    <ion-icon id="theme-button" onclick="switch_theme()" name="partly-sunny-outline" title="Changer de thème">
+    <div id="filemenu" class="hidden window">
+      <input id="filename-export" type="text" placeholder="Nom_de_fichier"></input><select id="filetype-save">
+        <option value=".vanta">.vanta</option>
+        <option value=".txt">.txt</option>
+        <option value=".md">.md</option>
+        <option value=".pdf">.pdf</option>
+        <option value=".html">.html</option>
+      </select> 
+      
+      <button onclick="closeAllWindows();switch_save()">exporter</button>
+      
+      </br></br></br>
+      
+      <input id="fileuploader" type="file">
+       <div id="filed-drop">
+          Ouvrir un fichier VANTA
+      </div>
+    </div>
+    <div id="widgetmenu" class="hidden window">
+      <ul>
+        <li onclick="switch_wopt([
+            {name: 'Youtube Video ID', html: `<input type='text' id='youtube-video-id'/>`}
+            ], 'widg_yt()')">
+          <ion-icon name="logo-youtube"></ion-icon>Youtube Player
+        </li>
+        <li onclick="switch_wopt([
+            {name: 'Expression', html: `<input type='text' id='maths-expression'/>`}
+            ], 'widg_mathsExpr()')">
+          <ion-icon name="calculator"></ion-icon>Maths Expression
+        </li>
+        <!-- <li><ion-icon name="map-outline"></ion-icon> Dynamic Map</li> -->
+      </ul>
+    </div>
+    <div id="presmenu" class="hidden window">
+      <li><input type="checkbox" id="tickhighlight"> Highlight</li>
+    </div>
+    <div id="dicomenu" class="hidden window">
+      <ul>
+        <li><input type="checkbox" checked id="abbr_FR"> Français (Global)</li>
+        <li><input type="checkbox" id="abbr_texto_FR"> Texto (FR)</li>
+        <li><input type="checkbox" id="abbr_bio_FR"> Biologie (FR)</li>
+        <li><input type="checkbox" id="abbr_physique_FR"> Physique (FR)</li>
+        <li><input type="checkbox" id="abbr_informatique_FR"> Informatique (FR)</li>
+      </ul>
+    </div>
+    <div id="widgetoptions" class="hidden window"></div>
+  
+    <div id="content" onclick="closeAllWindows()">
+      <textarea id="raw-content" spellcheck="false" onkeypress="quicksave()" onchange="quicksave()"
+        placeholder=">_" rows="1"></textarea>
+    </div>
+  
+    <div id="bottom-menu">
+       <ion-icon id="dico-button" onclick="closeAllWindows('dico');switch_dico()" name="book-outline"
+          title="Dictionnaire"></ion-icon>
+      <ion-icon id="files-button" onclick="closeAllWindows('files');switch_file()" name="folder-outline"
+          title="Run cells"></ion-icon>
+      <ion-icon id="render-button" onclick="switch_render()" name="document-text-outline" title="Edit / Render">
       </ion-icon>
-    
+      <ion-icon id="widget-button" onclick="closeAllWindows('widget');switch_widget()" name="sparkles-outline"
+          title="Menu des modules"></ion-icon>
+      <ion-icon id="theme-button" onclick="switch_theme()" name="partly-sunny-outline" title="Changer de thème">
+        </ion-icon>
+      
+    </div>
   </div>
   
   <div id="vBot">
@@ -89,9 +90,6 @@
       <span>utilisé <span id="vBot-used"></span> fois</span>
       <span>parmi <span id="vBot-words"></span> mots</span> et
       <span><span id="vBot-chars"></span> caractères</span>.<br>
-      <quote id="vBot-definition"></quote>
-      <br><br>
-      <span id="vBot-translation"></span>
     </div>
   </div>
   
@@ -100,7 +98,6 @@
   <script src="https://callmekitsu.kitsuforyou.repl.co/h/tsu.js"></script>
   <script src="script.js"></script>
   <script src="libs/vBot.js"></script>
-  <script src="libs/clicker.js"></script>
   <script src="libs/Filesaver.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

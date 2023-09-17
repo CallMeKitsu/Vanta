@@ -148,6 +148,14 @@ function line_md(line) {
     }
   }
 
+  let noms_propres = line.match(/^([ \u00c0-\u01ffa-zA-Z'\-])+$/gi)
+  if (noms_propres) {
+    for (let nom of noms_propres) {
+      console.log(nom)
+      line = line.replaceAll(nom, `<word>${nom}</word>`)
+    }
+  }
+
   line = line.replaceAll('\\', '')
   line = line.replaceAll('~=', '≈')
   line = markwith(line, "^", '<sup>', '</sup>')
@@ -158,6 +166,7 @@ function line_md(line) {
   line = markwith(line, "_", '<i><grey>', '</grey></i>')
   line = markwith(line, "~~", '<strike>', '</strike>')
   line = markwith(line, "~", '<sub>', '</sub>')
+  line = line.replaceAll('=/=', '≠')
   line = line.replaceAll('::', '➜')
   line = line.replaceAll('L->', '    ↳')
   line = line.replaceAll('->', '→')
@@ -171,8 +180,31 @@ function line_md(line) {
   line = line.replaceAll('(TM)', '™')
   line = line.replaceAll('+-', '±')
   line = line.replaceAll('sqrt(', '√(')
+  
 
   return line
+  // return line.around([",", "#", ".", ";", ".", "!", ":", "/", "+", "=", "|", "<", ">", " "], "<word>", "</word>")
+}
+
+String.prototype.around = function(chars, before, after) {
+  let res = ''
+  let cache = ''
+  
+  for(let char of Array.from(this)) {
+    if(chars.includes(char)) {
+      if(cache.length !== "") {
+        res += `${before}${cache}${after}${char}`
+        cache = ""
+      } else res += char
+    } else cache += char
+  }
+
+  if(cache.length > 0) {
+    res += `${before}${cache}${after}`
+    cache = ""
+  }
+
+  return res
 }
 
 function switch_render() {
@@ -183,6 +215,7 @@ function switch_render() {
     document.querySelector(`#content`).innerHTML = `<div id="rendered-content">${compute_html()}</div>`
     document.getElementById('render-button').name = "create-outline"
     document.querySelector("#rendered-content").style.overflow = "auto"
+    vBotSetup() // setup the vBot event listeners
   }
   else {
     document.querySelector(`#content`).innerHTML = `<textarea id="raw-content" spellcheck="false" onkeypress="quicksave()" onchange="quicksave()" placeholder=">_" rows="1">${FRESH_RAW_DATA}</textarea>`
@@ -322,6 +355,7 @@ function mathscript(text) {
   res = res.replaceAll('_Q', 'ℚ')
   res = res.replaceAll('_C', 'ℂ')
   res = res.replaceAll('f(x)', '<i>f </i>(𝓍)')
+  res = .replaceAll('è', '-')
 
   let alph = "abcdefghijklmnopqrstuvwxyz"
   for (var char of alph) {
